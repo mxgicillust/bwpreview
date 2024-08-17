@@ -1084,6 +1084,15 @@ Change padding of parent node if child node is hidden using .hidden class.
   text-align: center;
 }
 
+.footer {
+  position: center;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  color: white;
+  text-align: center;
+}
+
 .sidePanel .sideImgContainer:hover span {
   display: block;
 }
