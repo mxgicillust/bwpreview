@@ -26,6 +26,12 @@ document.addEventListener("DOMContentLoaded", () => {
         "9784824009180",
         "9784824009210",
         "9784824009227",
+        // 08/17 Update MF
+        "9784046839138",
+        "9784046839176",
+        "9784046839152",
+        "9784046839145",
+        "9784046840134"
     ];
 
     // const delay = ms => new Promise(resolve => setTimeout(resolve, ms));
