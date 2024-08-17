@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
     <meta charset="utf-8">
@@ -14,26 +14,35 @@
 <body>
 
     <div id="spaceHolder"></div>
-        <!-- raw container start -->
-        <div class="container edge">
-            <div class="head-title">
-                <h1><span>Search</span></h1>
-            </div>
-            <div class="searchContainer">
-                <input type="text" id="searchInput" onkeyup="searchFunction()">
-                <span id="failedInput">Not Exists</span>
-            </div>
-
-            <div class="row justify-content-center" id="rowHolder">
-                <!-- Dynamically generated content will be inserted here -->
-            </div>
-        <!-- raw container end -->
+    
+    <!-- ISBN -->
+    <h1 id="contentTitle"> </h1>
+    <div class="container edge" id="contentContainer" style="display: none;">
+        <div class="row justify-content-center" id="contentHolder">
+            
+        </div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"crossorigin="anonymous"></script>
+    <!-- List -->
+    <div class="container edge" id="listContainer">
+        <div class="head-title">
+            <h1><span>Search</span></h1>
+        </div>
+        <div class="searchContainer">
+            <input type="text" id="searchInput" onkeyup="searchFunction()">
+            <span id="failedInput">Not Exists</span>
+        </div>
+
+        <div class="row justify-content-center" id="rowHolder">
+            
+        </div>
+    </div>
+
+    <div class="footer" id="mainFooter">
+        <p>All Code are Courtesy of Meoki and Reedited</p>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
     <script src="script.js"></script>
 </body>
-<div class="footer">
-    <p>All Code are Courtesy of Meoki and Reedited</p>
-  </footer>
 </html>
