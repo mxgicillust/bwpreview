@@ -12,6 +12,7 @@ document.addEventListener("DOMContentLoaded", () => {
     fetch("isbn.json")
         .then(response => response.json())
         .then(isbnList => {
+            isbnList.reverse()
             if (isbn) {
                 mainFooter.style.display = 'none'; 
                 fetchOpenBDData(isbn, true);
