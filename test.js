@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Fetch Isbn
 
-    fetch("https://cdn.discordapp.com/attachments/1107913650846568499/1274651827366793387/isbnx.json?ex=66c30785&is=66c1b605&hm=179c06dea777f3efce6d3c77f42b603885d981d809b108b6848808a1ae1f49f1&")
+    fetch("https://raw.githubusercontent.com/mxgicillust/bwpreview/main/isbn.json")
     //fetch("isbn.json")
         .then(response => response.json())
         .then(isbnList => {
