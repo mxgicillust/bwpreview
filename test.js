@@ -91,7 +91,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 if (response.status == 200) {
                     window.location.href = `index.html?isbn=${isbn}`;
                 } else {
-                    alert("Error: Illustration doesn't got uploaded")
+                    alert("Error: Illustration doesn't got uploaded");
                 }
             })
             .catch(error => {
