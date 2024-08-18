@@ -11,8 +11,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Fetch Isbn
 
-    //fetch("https://raw.githubusercontent.com/mxgicillust/bwpreview/main/isbn.json")
-    fetch("isbn.json")
+    fetch("https://raw.githubusercontent.com/mxgicillust/bwpreview/main/isbn.json")
+    //fetch("isbn.json")
         .then(response => response.json())
         .then(isbnList => {
             isbnList.reverse()
@@ -23,33 +23,33 @@ document.addEventListener("DOMContentLoaded", () => {
                 listContainer.style.display = 'block';
                 contentContainer.style.display = 'none';
                 mainFooter.style.display = 'block';
-                isbnList.forEach(isbn => {
-                    fetchOpenBDData(isbn, false);
+                isbnList.forEach(item => {
+                    fetchOpenBDData(item.isbn, false, isbnList, item.placeholder);
                 });
             }
         })
         .catch(error => console.error('Error loading ISBN list:', error));
 
-    async function fetchOpenBDData(isbn, isSingle, isbnList = []) {
+    async function fetchOpenBDData(isbn, isSingle, isbnList = [], placeholder = 'assets/now-printing.jpg') {
         try {
             const response = await fetch(`https://api.openbd.jp/v1/get?isbn=${isbn}`);
-            if (!response.ok) throw new Error('Network response was not ok');
+            if (!response.ok) throw new Error('Error');
             const data = await response.json();
 
             if (data[0] && data[0].summary) {
                 const title = data[0].summary.title;
                 if (isSingle) {
-                    displayContent(isbn, title);
+                    displayContent(isbn, title, placeholder);
                 } else {
-                    createItem(isbn, title);
+                    createItem(isbn, title, placeholder);
                 }
             } else {
                 console.error('Title not found in OpenBD data');
-                handleInvalidISBN(isSingle, isbnList);
+                handleInvalidISBN(isSingle, isbnList, placeholder);
             }
         } catch (error) {
             console.error('Error fetching OpenBD data:', error);
-            handleInvalidISBN(isSingle, isbnList);
+            handleInvalidISBN(isSingle, isbnList, placeholder);
         }
     }
 
@@ -63,13 +63,13 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-    function createItem(isbn, title) {
+    function createItem(isbn, title, placeholder) {
         const newItem = document.createElement("div");
         newItem.className = "col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-6 col-6 pad";
         newItem.innerHTML = `
             <div class="item" id="${isbn}">
                 <div class="img-holder">
-                    <img src="content/${isbn}/i-001.jpg" alt="" loading="lazy" onerror="this.onerror=null; this.src='assets/now-printing.jpg';">
+                <img src="content/${isbn}/i-001.jpg" alt="" loading="lazy" onerror="this.onerror=null; this.src='${placeholder}';">
                 </div>
                 <p>${title}</p>
             </div>
@@ -79,7 +79,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const item = newItem.querySelector('.item');
         item.addEventListener("click", function () {
             const img = this.querySelector('img');
-            if (img.src.includes('now-printing.jpg')) {
+            if (img.src.includes(placeholder)) {
                 return;
             } else {
                 window.location.href = `index.html?isbn=${isbn}`;
@@ -87,13 +87,13 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    function createPlaceholderItem(isbn, title) {
+    function createPlaceholderItem(isbn, title, placeholder) {
         const newItem = document.createElement("div");
         newItem.className = "col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-6 col-6 pad";
         newItem.innerHTML = `
             <div class="item" id="${isbn}">
                 <div class="img-holder">
-                    <img src="assets/now-printing.jpg" alt="" loading="lazy">
+                <img src="${placeholder}" alt="" loading="lazy">
                 </div>
                 <p>${title}</p>
             </div>
@@ -101,7 +101,7 @@ document.addEventListener("DOMContentLoaded", () => {
         containerHolder.appendChild(newItem);
     }
 
-    function displayContent(isbn, title) {
+    function displayContent(isbn, title, placeholder) {
         listContainer.style.display = 'none';
         contentContainer.style.display = 'block';
         contentTitle.textContent = title || 'Loading...';
@@ -109,7 +109,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const imagesHtml = generateImagesHtml(isbn);
         contentHolder.innerHTML = `
             <link rel="stylesheet" href="content/custom.css"> 
-            <img src="content/${isbn}/i-001.jpg" alt="${title}" style="max-width: 100%; height: auto;" onerror="this.onerror=null; this.src='assets/now-printing.jpg';">
+            <img src="content/${isbn}/i-001.jpg" alt="${title}" style="max-width: 100%; height: auto;" onerror="this.onerror=null; this.src='${placeholder}';">
             <div class="images-container">
                 ${imagesHtml}
             </div>
@@ -118,7 +118,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function generateImagesHtml(isbn) {
         let imagesHtml = '';
-        for (let i = 2; i <= 80; i++) {
+        for (let i = 2; i <= 20; i++) {
             const imageNumber = String(i).padStart(3, '0');
             imagesHtml += `<img src="content/${isbn}/i-${imageNumber}.jpg" style="max-width: 100%; height: auto; margin-bottom: 10px;" onerror='this.style.display = "none"'>`;
         }
