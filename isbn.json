@@ -82,4 +82,36 @@
         "isbn": "9784046840134",
         "placeholder": "assets/mfbunko.jpg"
     }
+        {
+        "isbn": "9784086315647"
+    },
+    {
+        "isbn": "9784086315654"
+    },
+    {
+        "isbn": "9784086315661"
+    },
+    {
+        "isbn": "9784824201652"
+    },
+    {
+        "isbn": "9784041148310",
+        "placeholder": "assets/sneaker.jpg"
+    },
+    {
+        "isbn": "9784041149768",
+        "placeholder": "assets/sneaker.jpg"
+    },
+    {
+        "isbn": "9784041152324",
+        "placeholder": "assets/sneaker.jpg"
+    },
+    {
+        "isbn": "9784041152331",
+        "placeholder": "assets/sneaker.jpg"
+    },
+    {
+        "isbn": "9784041153192",
+        "placeholder": "assets/sneaker.jpg"
+    }
 ]
