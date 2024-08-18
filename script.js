@@ -59,7 +59,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 window.location.href = 'index.html';
             }
         } else {
-            createPlaceholderItem(isbn, 'Title not available');
+            createPlaceholderItem(isbn, 'Title not available', 'assets/now-printing.jpg');
         }
     }
 
