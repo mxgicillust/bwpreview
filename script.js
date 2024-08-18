@@ -9,6 +9,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const urlParams = new URLSearchParams(window.location.search);
     const isbn = urlParams.get('isbn');
 
+    // Fetch Isbn
+
+    //fetch("https://raw.githubusercontent.com/mxgicillust/bwpreview/main/isbn.json")
     fetch("isbn.json")
         .then(response => response.json())
         .then(isbnList => {
@@ -52,7 +55,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function handleInvalidISBN(isSingle, isbnList) {
         if (isSingle) {
-            // Check if the ISBN is in the list, if not, redirect to main page
             if (!isbnList.includes(isbn)) {
                 window.location.href = 'index.html';
             }
@@ -80,7 +82,7 @@ document.addEventListener("DOMContentLoaded", () => {
             if (img.src.includes('now-printing.jpg')) {
                 return;
             } else {
-                window.location.href = `index.html?isbn=${isbn}`;
+                window.location.href = `viewer.html?isbn=${isbn}`;
             }
         });
     }
@@ -116,8 +118,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function generateImagesHtml(isbn) {
         let imagesHtml = '';
-        for (let i = 1; i <= 100; i++) {
-            const imageNumber = String(i).padStart(3, '0'); // Format number as 3-digit string
+        for (let i = 2; i <= 20; i++) {
+            const imageNumber = String(i).padStart(3, '0');
             imagesHtml += `<img src="content/${isbn}/i-${imageNumber}.jpg" style="max-width: 100%; height: auto; margin-bottom: 10px;" onerror='this.style.display = "none"'>`;
         }
         return imagesHtml;
