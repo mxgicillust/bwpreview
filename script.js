@@ -44,7 +44,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     createItem(isbn, title, placeholder);
                 }
             } else {
-                console.error('Title not found in OpenBD data');
+                console.error('Title not found in OpenBD data', isbn);
                 handleInvalidISBN(isSingle, isbnList, placeholder);
             }
         } catch (error) {
