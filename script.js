@@ -82,7 +82,7 @@ document.addEventListener("DOMContentLoaded", () => {
             if (img.src.includes('now-printing.jpg')) {
                 return;
             } else {
-                window.location.href = `viewer.html?isbn=${isbn}`;
+                window.location.href = `index.html?isbn=${isbn}`;
             }
         });
     }
