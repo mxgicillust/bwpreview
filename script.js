@@ -118,7 +118,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function generateImagesHtml(isbn) {
         let imagesHtml = '';
-        for (let i = 2; i <= 20; i++) {
+        for (let i = 2; i <= 80; i++) {
             const imageNumber = String(i).padStart(3, '0');
             imagesHtml += `<img src="content/${isbn}/i-${imageNumber}.jpg" style="max-width: 100%; height: auto; margin-bottom: 10px;" onerror='this.style.display = "none"'>`;
         }
