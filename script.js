@@ -15,10 +15,10 @@ document.addEventListener("DOMContentLoaded", () => {
     //fetch("isbn.json")
         .then(response => response.json())
         .then(isbnList => {
-            isbnList.reverse()
+            isbnList.reverse();
             if (isbn) {
                 mainFooter.style.display = 'none'; 
-                fetchOpenBDData(isbn, true);
+                fetchOpenBDData(isbn, true, isbnList);
             } else {
                 listContainer.style.display = 'block';
                 contentContainer.style.display = 'none';
@@ -45,21 +45,45 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
             } else {
                 console.error('Title not found in OpenBD data', isbn);
-                handleInvalidISBN(isSingle, isbnList, placeholder);
+                fetchLocalJSONData(isbn, isSingle, isbnList, placeholder);
             }
         } catch (error) {
             console.error('Error fetching OpenBD data:', error);
+            fetchLocalJSONData(isbn, isSingle, isbnList, placeholder);
+        }
+    }
+
+    async function fetchLocalJSONData(isbn, isSingle, isbnList = [], placeholder = 'assets/now-printing.jpg') {
+        try {
+            const response = await fetch('https://raw.githubusercontent.com/mxgicillust/bwpreview/main/isbn.json'); 
+            if (!response.ok) throw new Error('Error fetching JSON');
+            const jsonData = await response.json();
+
+            const bookData = jsonData.find(item => item.isbn === isbn);
+            if (bookData && bookData.title) {
+                const title = bookData.title;
+                if (isSingle) {
+                    displayContent(isbn, title, placeholder);
+                } else {
+                    createItem(isbn, title, placeholder);
+                }
+            } else {
+                console.error('Title not found in local JSON data', isbn);
+                handleInvalidISBN(isSingle, isbnList, placeholder);
+            }
+        } catch (error) {
+            console.error('Error fetching local JSON data:', error);
             handleInvalidISBN(isSingle, isbnList, placeholder);
         }
     }
 
-    function handleInvalidISBN(isSingle, isbnList) {
+    function handleInvalidISBN(isSingle, isbnList, placeholder) {
         if (isSingle) {
             if (!isbnList.includes(isbn)) {
                 window.location.href = 'index.html';
             }
         } else {
-            createPlaceholderItem(isbn, 'Title not available', 'assets/now-printing.jpg');
+            createPlaceholderItem(isbn, 'Title not available', placeholder);
         }
     }
 
@@ -125,7 +149,6 @@ document.addEventListener("DOMContentLoaded", () => {
         return imagesHtml;
     }
 });
-
 
 // Search
 
