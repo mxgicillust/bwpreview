@@ -159,8 +159,9 @@ document.addEventListener("DOMContentLoaded", () => {
         const imageUrl = `https://raw.githubusercontent.com/mxgicillust/bwpreview/main/content/${isbn}/i-001.jpg`;
         const fallbackImageUrl = placeholder;
     
-        
-        setTags(title, imageUrl, fallbackImageUrl);
+        if (isbn) {
+            setTags(title, imageUrl, fallbackImageUrl);
+        }
     
         const imagesHtml = generateImagesHtml(isbn);
         contentHolder.innerHTML = `
