@@ -125,20 +125,53 @@ document.addEventListener("DOMContentLoaded", () => {
         containerHolder.appendChild(newItem);
     }
 
+    function setTags(title, imageUrl, fallbackImageUrl) {
+        const head = document.head;
+    
+        CreatemetaTag(head, 'og:title', title);
+        CreatemetaTag(head, 'og:image', imageUrl);
+        CreatemetaTag(head, 'og:image:alt', title);
+        CreatemetaTag(head, 'og:type', 'website');
+        CreatemetaTag(head, 'og:url', window.location.href);
+    
+        const img = new Image();
+        img.onload = () => CreatemetaTag(head, 'og:image', imageUrl);
+        img.onerror = () => CreatemetaTag(head, 'og:image', fallbackImageUrl);
+        img.src = imageUrl;
+    }
+    
+    function CreatemetaTag(parent, property, content) {
+        let metaTag = parent.querySelector(`meta[property="${property}"]`);
+    
+        if (!metaTag) {
+            metaTag = document.createElement('meta');
+            metaTag.setAttribute('property', property);
+            parent.appendChild(metaTag);
+        }
+        metaTag.setAttribute('content', content);
+    }
+
     function displayContent(isbn, title, placeholder) {
         listContainer.style.display = 'none';
         contentContainer.style.display = 'block';
         contentTitle.textContent = title || 'Loading...';
-
+    
+        const imageUrl = `content/${isbn}/i-001.jpg`;
+        const fallbackImageUrl = placeholder;
+    
+        
+        setTags(title, imageUrl, fallbackImageUrl);
+    
         const imagesHtml = generateImagesHtml(isbn);
         contentHolder.innerHTML = `
             <link rel="stylesheet" href="content/custom.css"> 
-            <img src="content/${isbn}/i-001.jpg" alt="${title}" style="max-width: 100%; height: auto;" onerror="this.onerror=null; this.src='${placeholder}';">
+            <img src="${imageUrl}" alt="${title}" style="max-width: 100%; height: auto;" onerror="this.onerror=null; this.src='${fallbackImageUrl}';">
             <div class="images-container">
                 ${imagesHtml}
             </div>
         `;
     }
+
 
     function generateImagesHtml(isbn) {
         let imagesHtml = '';
