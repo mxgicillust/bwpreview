@@ -156,7 +156,7 @@ document.addEventListener("DOMContentLoaded", () => {
         contentContainer.style.display = 'block';
         contentTitle.textContent = title || 'Loading...';
     
-        const imageUrl = `content/${isbn}/i-001.jpg`;
+        const imageUrl = `https://raw.githubusercontent.com/mxgicillust/bwpreview/main/content/${isbn}/i-001.jpg`;
         const fallbackImageUrl = placeholder;
     
         
