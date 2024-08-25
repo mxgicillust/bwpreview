@@ -93,7 +93,7 @@ document.addEventListener("DOMContentLoaded", () => {
         newItem.innerHTML = `
             <div class="item" id="${isbn}">
                 <div class="img-holder">
-                <img src="content/${isbn}/i-001.jpg" alt="" loading="lazy" onerror="this.onerror=null; this.src='${placeholder}';">
+                <img src="https://pub-e28bf2d5c16b4edb835dd176df0418ef.r2.dev/${isbn}/i-001.jpg" alt="" loading="lazy" onerror="this.onerror=null; this.src='${placeholder}';">
                 </div>
                 <p>${title}</p>
             </div>
@@ -156,7 +156,7 @@ document.addEventListener("DOMContentLoaded", () => {
         contentContainer.style.display = 'block';
         contentTitle.textContent = title || 'Loading...';
     
-        const imageUrl = `https://raw.githubusercontent.com/mxgicillust/bwpreview/main/content/${isbn}/i-001.jpg`;
+        const imageUrl = `https://pub-e28bf2d5c16b4edb835dd176df0418ef.r2.dev/${isbn}/i-001.jpg`;
         const fallbackImageUrl = placeholder;
     
         if (isbn) {
@@ -178,7 +178,7 @@ document.addEventListener("DOMContentLoaded", () => {
         let imagesHtml = '';
         for (let i = 2; i <= 80; i++) {
             const imageNumber = String(i).padStart(3, '0');
-            imagesHtml += `<img src="content/${isbn}/i-${imageNumber}.jpg" style="max-width: 100%; height: auto; margin-bottom: 10px;" onerror='this.style.display = "none"'>`;
+            imagesHtml += `<img src="https://pub-e28bf2d5c16b4edb835dd176df0418ef.r2.dev/${isbn}/i-${imageNumber}.jpg" style="max-width: 100%; height: auto; margin-bottom: 10px;" onerror='this.style.display = "none"'>`;
         }
         return imagesHtml;
     }
