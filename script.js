@@ -107,19 +107,17 @@ document.addEventListener("DOMContentLoaded", () => {
                 return;
             }
 
-            const altimg = `https://pub-e28bf2d5c16b4edb835dd176df0418ef.r2.dev/${isbn}/i-002.jpg`;
-            fetch(altimg, { method: 'HEAD' })
-            .then(response => {
-                if (response.status == 200) {
-                    window.location.href = `index.html?isbn=${isbn}`;
-                } else {
-                    alert("Error: Illustration doesn't got uploaded");
-                    console.log(Error("Illustration doesn't got uploaded"))
-                }
-            })
-            .catch(error => {
-                console.error(error);
-            });
+            const altimg = new Image();
+            altimg.src = `https://pub-e28bf2d5c16b4edb835dd176df0418ef.r2.dev/${isbn}/i-002.jpg`;
+    
+            altimg.onload = function() {
+                window.location.href = `index.html?isbn=${isbn}`;
+            }
+            
+            altimg.onerror = function() {
+                alert("Error: Sub Illustration doesn't got uploaded");
+                console.error("Sub Illustration doesn't got uploaded");
+            };
         });
     }
 
