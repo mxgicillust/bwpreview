@@ -122,7 +122,6 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         });
     }
-    }
 
     function createPlaceholderItem(isbn, title, placeholder) {
         const newItem = document.createElement("div");
