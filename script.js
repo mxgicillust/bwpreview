@@ -105,10 +105,23 @@ document.addEventListener("DOMContentLoaded", () => {
             const img = this.querySelector('img');
             if (img.src.includes(placeholder)) {
                 return;
-            } else {
-                window.location.href = `index.html?isbn=${isbn}`;
             }
+
+            const altimg = `https://pub-e28bf2d5c16b4edb835dd176df0418ef.r2.dev/${isbn}/i-002.jpg`;
+            fetch(altimg, { method: 'HEAD' })
+            .then(response => {
+                if (response.status == 200) {
+                    window.location.href = `index.html?isbn=${isbn}`;
+                } else {
+                    alert("Error: Illustration doesn't got uploaded");
+                    console.log(Error("Illustration doesn't got uploaded"))
+                }
+            })
+            .catch(error => {
+                console.error(error);
+            });
         });
+    }
     }
 
     function createPlaceholderItem(isbn, title, placeholder) {
