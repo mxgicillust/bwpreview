@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Fetch Isbn
 
-    fetch("https://raw.githubusercontent.com/mxgicillust/bwpreview/main/isbn.json")
+    fetch("https://raw.githubusercontent.com/mxgicillust/bwjson/main/isbn.json")
     //fetch("isbn.json")
         .then(response => response.json())
         .then(isbnList => {
