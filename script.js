@@ -115,8 +115,8 @@ document.addEventListener("DOMContentLoaded", () => {
             }
             
             altimg.onerror = function() {
-                alert("Error: Sub Illustration doesn't got uploaded");
-                console.error("Sub Illustration doesn't got uploaded");
+                alert("Error: Sub Illustration doesn't got uploaded\n 口絵はまだアップロードされておりません");
+                console.error("Sub Illustration doesn't got uploaded", isbn);
             };
         });
     }
