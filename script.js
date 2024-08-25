@@ -55,7 +55,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     async function fetchLocalJSONData(isbn, isSingle, isbnList = [], placeholder = 'assets/now-printing.jpg') {
         try {
-            const response = await fetch('https://raw.githubusercontent.com/mxgicillust/bwpreview/main/isbn.json'); 
+            const response = await fetch('https://raw.githubusercontent.com/mxgicillust/bwjson/main/isbn.json'); 
             if (!response.ok) throw new Error('Error fetching JSON');
             const jsonData = await response.json();
 
