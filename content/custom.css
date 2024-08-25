@@ -1,0 +1,120 @@
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&display=swap');
+
+html{background-color: antiquewhite;}
+
+body {
+    background-color: rgb(250, 233, 210);
+    margin: 5rem 25rem;
+    padding: 5rem;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    border-radius: 40px;
+    }
+
+h1,h2,h3,h4 {
+    font-family: 'Yu Mincho','Merriweather' !important;
+    font-size: 24px !important;
+    text-align: center;
+    font-weight: bold !important;
+    padding-top: 5rem !important;
+    margin-bottom: -3rem !important;
+    color: white;
+   }
+
+p {
+    font-family: 'Yu Mincho','Merriweather' !important;
+    font-size: 20px;
+    line-height: 40px;
+    margin-bottom: 20px !important;
+  }
+
+img:not(.gaiji, .gaiji-line) {
+    width: 100% !important;
+    height: auto !important;
+    border-radius: 30px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 1px 3px, rgba(0, 0, 0, 0.48) 0px 1px 2px;
+    }
+
+svg {
+    border-radius: 30px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 1px 3px, rgba(0, 0, 0, 0.48) 0px 1px 2px;
+    margin-bottom: 2rem !important;
+    }
+
+@media screen and (max-width: 1400px){
+      body {
+        margin: 2rem 15rem;
+      }
+  }
+    
+@media screen and (max-width: 1200px){
+      body {
+        margin: 2rem 10rem;
+      }
+  }
+
+@media screen and (max-width: 1024px){
+      body {
+        margin: 2rem 0;
+      }
+  }
+
+/*Ipad dọc(768 x 1024)*/
+@media screen and (max-width: 768px){
+      body {
+        margin: 2rem 0;
+      }
+    }
+/*Tablet nhỏ(480 x 640)*/
+@media screen and (max-width: 480px){
+      body {
+        margin: 2rem 0;
+      }
+    }
+/*Iphone(480 x 640)*/
+@media screen and (max-width: 320px){
+      body {
+        margin: 2rem 0;
+      }
+    }
+/*Smart phone nhỏ*/
+@media screen and (max-width: 240px){
+      body {
+        margin: 2rem 0;
+      }
+    }
+
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 7px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background-color:aliceblue;
+  border-radius: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #2c2c2c;
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #6d83f2;
+}
+
+/* Fix issue for Dash X Bunko */
+.main {
+  height: auto !important;
+}
+
+/* Fix issue for chapter images */
+.main1 p:first-child img:not(.fit1) {
+  width: auto !important;
+}
+.main1 h1:first-child img:not(.fit1) {
+  width: auto !important;
+}
