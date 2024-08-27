@@ -93,7 +93,7 @@ document.addEventListener("DOMContentLoaded", () => {
         newItem.innerHTML = `
             <div class="item" id="${isbn}">
                 <div class="img-holder">
-                <img src="https://pub-e28bf2d5c16b4edb835dd176df0418ef.r2.dev/${isbn}/i-001.jpg" alt="" loading="lazy" onerror="this.onerror=null; this.src='${placeholder}';">
+                <img src="https://www.books.or.jp/img/books_icon/${isbn}" alt="${title}" loading="lazy" onerror="this.onerror=null; this.src='${placeholder}';">
                 </div>
                 <p>${title}</p>
             </div>
@@ -108,14 +108,14 @@ document.addEventListener("DOMContentLoaded", () => {
             }
 
             const altimg = new Image();
-            altimg.src = `https://pub-e28bf2d5c16b4edb835dd176df0418ef.r2.dev/${isbn}/i-002.jpg`;
+            altimg.src = `https://pub-e28bf2d5c16b4edb835dd176df0418ef.r2.dev/${isbn}/i-001.jpg`;
     
             altimg.onload = function() {
                 window.location.href = `index.html?isbn=${isbn}`;
             }
             
             altimg.onerror = function() {
-                alert("Error: Sub Illustration doesn't got uploaded\n 口絵はまだアップロードされておりません");
+                alert("Error: Sub Illustration doesn't got uploaded\n口絵はまだアップロードされておりません");
                 console.error("Sub Illustration doesn't got uploaded", isbn);
             };
         });
