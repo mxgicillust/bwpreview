@@ -58,14 +58,26 @@ document.addEventListener("DOMContentLoaded", () => {
             const response = await fetch('https://raw.githubusercontent.com/mxgicillust/bwjson/main/isbn.json'); 
             if (!response.ok) throw new Error('Error fetching JSON');
             const jsonData = await response.json();
-
+    
             const bookData = jsonData.find(item => item.isbn === isbn);
-            if (bookData && bookData.title) {
-                const title = bookData.title;
-                if (isSingle) {
-                    displayContent(isbn, title, placeholder);
-                } else {
-                    createItem(isbn, title, placeholder);
+            if (bookData) {
+                if (typeof bookData.hide === 'undefined') {
+                    bookData.hide = true;
+                }
+                if (bookData.hide) {
+                    const imgCheck = new Image();
+                    imgCheck.src = `https://pub-e28bf2d5c16b4edb835dd176df0418ef.r2.dev/${isbn}/i-001.jpg`;
+                    imgCheck.onload = () => {
+                        const title = bookData.title || 'Title not available';
+                        if (isSingle) {
+                            displayContent(isbn, title, placeholder);
+                        } else {
+                            createItem(isbn, title, placeholder);
+                        }
+                    // };
+                        // imgCheck.onerror = () => {
+                        // console.log(`Error`);
+                    };
                 }
             } else {
                 console.error('Title not found in local JSON data', isbn);
