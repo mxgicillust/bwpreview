@@ -66,7 +66,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
                 if (bookData.hide) {
                     const imgCheck = new Image();
-                    imgCheck.src = `https://pub-e28bf2d5c16b4edb835dd176df0418ef.r2.dev/${isbn}/i-001.jpg`;
+                    imgCheck.src = `https://pub-e28bf2d5c16b4edb835dd176df0418ef.r2.dev/${isbn}/i-002.jpg`;
                     imgCheck.onload = () => {
                         const title = bookData.title || 'Title not available';
                         if (isSingle) {
