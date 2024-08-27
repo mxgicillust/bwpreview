@@ -93,7 +93,7 @@ document.addEventListener("DOMContentLoaded", () => {
         newItem.innerHTML = `
             <div class="item" id="${isbn}">
                 <div class="img-holder">
-                <img src="https://www.books.or.jp/img/books_icon/${isbn}" alt="${title}" loading="lazy" onerror="this.onerror=null; this.src='${placeholder}';">
+                <img src="https://www.books.or.jp/img/books_icon/${isbn}.jpg" alt="${title}" loading="lazy" onerror="this.onerror=null; this.src='${placeholder}';">
                 </div>
                 <p>${title}</p>
             </div>
