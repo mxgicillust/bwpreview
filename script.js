@@ -9,28 +9,51 @@ document.addEventListener("DOMContentLoaded", () => {
     const urlParams = new URLSearchParams(window.location.search);
     const isbn = urlParams.get('isbn');
 
-    // Fetch Isbn
+    const publisherLogos = {
+        'ダッシュエックス文庫DIGITAL': 'assets/logo/logo_dashxbunko.svg',
+        '電撃文庫': 'assets/logo/logo_dengekibunko.svg',
+        '電撃の新文芸': 'assets/logo/logo_dengekishinbungei.svg',
+        'ファミ通文': 'assets/logo/logo_famitsubunko.svg',
+        '富士見ファンタジア文庫': 'assets/logo/logo_fantasiabunko.svg',
+        'GA文庫': 'assets/logo/logo_gabunko.svg',
+        'ガガガ文庫': 'assets/logo/logo_gagagabunko.svg',
+        'GAノベル': 'assets/logo/logo_ganovel.svg',
+        'HJ文庫': 'assets/logo/logo_hjbunko.svg',
+        'カドカワBOOKS': 'assets/logo/logo_kadokawabooks.svg',
+        'Ｋラノベブックス': 'assets/logo/logo_kranobe.svg',
+        '講談社ラノベ文庫': 'assets/logo/logo_kranobebunko.svg',
+        'MFブックス': 'assets/logo/logo_mfbooks.svg',
+        'MF文庫J': 'assets/logo/logo_mfbunkoj.svg',
+        'オーバーラップ文庫': 'assets/logo/logo_overlapbunko.svg',
+        'オーバーラップノベルス': 'assets/logo/logo_overlapnovels.svg',
+        '角川スニーカー文庫': 'assets/logo/logo_sneakerbunko.svg',
+    };
+
+    const pubMap = {
+        '角川スニーカー文庫': 'スニーカー文庫',
+        '富士見ファンタジア文庫': 'ファンタジア文庫',
+        'ダッシュエックス文庫DIGITAL': 'ダッシュエックス文庫'
+    };
 
     fetch("https://raw.githubusercontent.com/mxgicillust/bwjson/main/isbn.json")
     //fetch("isbn.json")
         .then(response => response.json())
         .then(isbnList => {
-            isbnList.reverse();
             if (isbn) {
                 mainFooter.style.display = 'none'; 
-                fetchOpenBDData(isbn, true, isbnList);
+                fetchISBN(isbn, true, isbnList);
             } else {
                 listContainer.style.display = 'block';
                 contentContainer.style.display = 'none';
                 mainFooter.style.display = 'block';
                 isbnList.forEach(item => {
-                    fetchOpenBDData(item.isbn, false, isbnList, item.placeholder);
+                    fetchISBN(item.isbn, false, isbnList, item.placeholder);
                 });
             }
         })
         .catch(error => console.error('Error loading ISBN list:', error));
 
-    async function fetchOpenBDData(isbn, isSingle, isbnList = [], placeholder = 'assets/now-printing.jpg') {
+    async function fetchISBN(isbn, isSingle, isbnList = [], placeholder = 'assets/now-printing.jpg') {
         try {
             const response = await fetch(`https://api.openbd.jp/v1/get?isbn=${isbn}`);
             if (!response.ok) throw new Error('Error');
@@ -38,22 +61,23 @@ document.addEventListener("DOMContentLoaded", () => {
 
             if (data[0] && data[0].summary) {
                 const title = data[0].summary.title;
+                const publisher = data[0].summary.series;
                 if (isSingle) {
                     displayContent(isbn, title, placeholder);
                 } else {
-                    createItem(isbn, title, placeholder);
+                    createItem(isbn, title, placeholder, publisher);
                 }
             } else {
                 console.error('Title not found in OpenBD data', isbn);
-                fetchLocalJSONData(isbn, isSingle, isbnList, placeholder);
+                fetchJSON(isbn, isSingle, isbnList, placeholder);
             }
         } catch (error) {
             console.error('Error fetching OpenBD data:', error);
-            fetchLocalJSONData(isbn, isSingle, isbnList, placeholder);
+            fetchJSON(isbn, isSingle, isbnList, placeholder);
         }
     }
 
-    async function fetchLocalJSONData(isbn, isSingle, isbnList = [], placeholder = 'assets/now-printing.jpg') {
+    async function fetchJSON(isbn, isSingle, isbnList = [], placeholder = 'assets/now-printing.jpg') {
         try {
             const response = await fetch('https://raw.githubusercontent.com/mxgicillust/bwjson/main/isbn.json'); 
             if (!response.ok) throw new Error('Error fetching JSON');
@@ -69,96 +93,84 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
             } else {
                 console.error('Title not found in local JSON data', isbn);
-                handleInvalidISBN(isSingle, isbnList, placeholder);
+                ISBNHandler(isSingle, isbnList, placeholder);
             }
         } catch (error) {
             console.error('Error fetching local JSON data:', error);
-            handleInvalidISBN(isSingle, isbnList, placeholder);
+            ISBNHandler(isSingle, isbnList, placeholder);
         }
     }
 
-    function handleInvalidISBN(isSingle, isbnList, placeholder) {
+    function ISBNHandler(isSingle, isbnList, placeholder) {
         if (isSingle) {
             if (!isbnList.includes(isbn)) {
                 window.location.href = 'index.html';
             }
         } else {
-            createPlaceholderItem(isbn, 'Title not available', placeholder);
+            CreatePlaceholder(isbn, 'Title not available', placeholder);
         }
     }
 
-    function createItem(isbn, title, placeholder) {
-        const newItem = document.createElement("div");
-        newItem.className = "col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-6 col-6 pad";
-        newItem.innerHTML = `
-            <div class="item" id="${isbn}">
-                <div class="img-holder">
-                <img src="https://www.books.or.jp/img/books_icon/${isbn}.jpg" alt="${title}" loading="lazy" onerror="this.onerror=null; this.src='https://pub-e28bf2d5c16b4edb835dd176df0418ef.r2.dev/${isbn}/i-001.jpg'; this.onerror=function() {this.src='${placeholder}';};">
-                </div>
-                <p>${title}</p>
-            </div>
-        `;
-        containerHolder.appendChild(newItem);
-
-        const item = newItem.querySelector('.item');
-        item.addEventListener("click", function () {
-            const img = this.querySelector('img');
-            if (img.src.includes(placeholder)) {
-                return;
-            }
-
-            const altimg = new Image();
-            altimg.src = `https://pub-e28bf2d5c16b4edb835dd176df0418ef.r2.dev/${isbn}/i-001.jpg`;
-    
-            altimg.onload = function() {
-                window.location.href = `index.html?isbn=${isbn}`;
-            }
-            
-            altimg.onerror = function() {
-                alert("Error: Sub Illustration doesn't got uploaded\n口絵はまだアップロードされておりません");
-                console.error("Sub Illustration doesn't got uploaded", isbn);
-            };
-        });
-    }
-
-    function createPlaceholderItem(isbn, title, placeholder) {
-        const newItem = document.createElement("div");
-        newItem.className = "col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-6 col-6 pad";
-        newItem.innerHTML = `
-            <div class="item" id="${isbn}">
-                <div class="img-holder">
-                <img src="${placeholder}" alt="" loading="lazy">
-                </div>
-                <p>${title}</p>
-            </div>
-        `;
-        containerHolder.appendChild(newItem);
-    }
-
-    function setTags(title, imageUrl, fallbackImageUrl) {
-        const head = document.head;
-    
-        CreatemetaTag(head, 'og:title', title);
-        CreatemetaTag(head, 'og:image', imageUrl);
-        CreatemetaTag(head, 'og:image:alt', title);
-        CreatemetaTag(head, 'og:type', 'website');
-        CreatemetaTag(head, 'og:url', window.location.href);
+    function createItem(isbn, title, placeholder, publisher) {
+        const imageUrl = `https://pub-e28bf2d5c16b4edb835dd176df0418ef.r2.dev/${isbn}/i-001.jpg`;
     
         const img = new Image();
-        img.onload = () => CreatemetaTag(head, 'og:image', imageUrl);
-        img.onerror = () => CreatemetaTag(head, 'og:image', fallbackImageUrl);
         img.src = imageUrl;
+    
+        img.onload = function() {
+            const newItem = document.createElement("div");
+            const re_publisher = pubMap[publisher] || publisher;
+            const logo = publisherLogos[re_publisher] ? `<img src="${publisherLogos[re_publisher]}" alt="${re_publisher} logo" class="publisher-logo">` : '';    
+            newItem.className = "col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-6 col-6 pad";
+            newItem.innerHTML = `
+                <div class="item" id="${isbn}">
+                    <div class="img-holder">
+                        <img src="https://www.books.or.jp/img/books_icon/${isbn}.jpg" alt="${title}" loading="lazy" onerror="this.onerror=null; this.src='${imageUrl}'; this.onerror=function() {this.src='${placeholder}';};">
+                    </div>
+                    <p>${title}</p>
+                    <span>${logo} ${re_publisher || undefined }</span>
+                </div>
+            `;
+            containerHolder.appendChild(newItem);
+    
+            const item = newItem.querySelector('.item');
+            item.addEventListener("click", function () {
+                const img = this.querySelector('img');
+                if (img.src.includes(placeholder)) {
+                    return;
+                }
+    
+                const altimg = new Image();
+                altimg.src = imageUrl;
+    
+                altimg.onload = function() {
+                    window.location.href = `index.html?isbn=${isbn}`;
+                }
+                
+                altimg.onerror = function() {
+                    alert("Error: Sub Illustration hasn't been uploaded\n口絵はまだアップロードされておりません");
+                    console.warn("Sub Illustration hasn't been uploaded", isbn);
+                };
+            });
+        };
+    
+        img.onerror = function() {
+            return;
+        };
     }
-    
-    function CreatemetaTag(parent, property, content) {
-        let metaTag = parent.querySelector(`meta[property="${property}"]`);
-    
-        if (!metaTag) {
-            metaTag = document.createElement('meta');
-            metaTag.setAttribute('property', property);
-            parent.appendChild(metaTag);
-        }
-        metaTag.setAttribute('content', content);
+
+    function CreatePlaceholder(isbn, title, placeholder) {
+        const newItem = document.createElement("div");
+        newItem.className = "col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-6 col-6 pad";
+        newItem.innerHTML = `
+            <div class="item" id="${isbn}">
+                <div class="img-holder">
+                <img src="${placeholder}" alt="${title}" loading="lazy">
+                </div>
+                <p>${title}</p>
+            </div>
+        `;
+        containerHolder.appendChild(newItem);
     }
 
     function displayContent(isbn, title, placeholder) {
@@ -169,14 +181,11 @@ document.addEventListener("DOMContentLoaded", () => {
         const imageUrl = `https://pub-e28bf2d5c16b4edb835dd176df0418ef.r2.dev/${isbn}/i-001.jpg`;
         const fallbackImageUrl = placeholder;
     
-        if (isbn) {
-            setTags(title, imageUrl, fallbackImageUrl);
-        }
-    
         const imagesHtml = generateImagesHtml(isbn);
         contentHolder.innerHTML = `
             <link rel="stylesheet" href="content/custom.css"> 
             <img src="${imageUrl}" alt="${title}" style="max-width: 100%; height: auto;" onerror="this.onerror=null; this.src='${fallbackImageUrl}';">
+            <div></div>
             <div class="images-container">
                 ${imagesHtml}
             </div>
