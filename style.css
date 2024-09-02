@@ -1096,3 +1096,9 @@ Change padding of parent node if child node is hidden using .hidden class.
 .sidePanel .sideImgContainer:hover span {
   display: block;
 }
+
+.publisher-logo {
+  width: 7% !important;
+  vertical-align: middle;
+  margin-right: 5px;
+}
