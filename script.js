@@ -229,7 +229,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function generateImagesHtml(isbn) {
         let imagesHtml = '';
-        for (let i = 2; i <= 80; i++) {
+        for (let i = 2; i <= 10; i++) {
             const imageNumber = String(i).padStart(3, '0');
             imagesHtml += `<img src="https://pub-e28bf2d5c16b4edb835dd176df0418ef.r2.dev/${isbn}/i-${imageNumber}.jpg" style="max-width: 100%; height: auto; margin-bottom: 10px;" onerror='this.style.display = "none"'>`;
         }
