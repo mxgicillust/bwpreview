@@ -122,11 +122,12 @@ document.addEventListener("DOMContentLoaded", () => {
             const newItem = document.createElement("div");
             const re_publisher = pubMap[publisher] || publisher;
             const logo = publisherLogos[re_publisher] ? `<img src="${publisherLogos[re_publisher]}" alt="${re_publisher} logo" class="publisher-logo">` : '';    
+            const cldate = new Date().getTime()
             newItem.className = "col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-6 col-6 pad";
             newItem.innerHTML = `
                 <div class="item" id="${isbn}">
                     <div class="img-holder">
-                        <img src="https://www.books.or.jp/img/books_icon/${isbn}.jpg" alt="${title}" loading="lazy" onerror="this.onerror=null; this.src='${imageUrl}'; this.onerror=function() {this.src='${placeholder}';};">
+                        <img src="https://www.books.or.jp/img/books_icon/${isbn}.jpg?${cldate}" alt="${title}" loading="lazy" onerror="this.onerror=null; this.src='${imageUrl}'; this.onerror=function() {this.src='${placeholder}';};">
                     </div>
                     <p>${title}</p>
                     <span>${logo} ${re_publisher || undefined }</span>
