@@ -21,6 +21,12 @@
     <!-- End Google Tag Manager (noscript) -->
 
     <div id="spaceHolder"></div>
+
+    <a href="index.html" id="homeButton" style="display: none; text-align: center; margin: 20px auto; display: block;">
+        <button style="background-color: #4CAF50; color: white; padding: 10px 20px; border: none; cursor: pointer;">
+            <i class="fas fa-home"></i> Home
+        </button>
+    </a>
     
     <!-- ISBN -->
     <h1 id="contentTitle"> </h1>
@@ -67,5 +73,19 @@
      <!-- Cloudflare Web Analytics -->
     <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "8397abfad63745a59500d49fc415d67e"}'></script>
     <!-- End Cloudflare Web Analytics -->
+        <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const isbn = urlParams.get('isbn'); 
+    
+            const homeButton = document.getElementById('homeButton');
+    
+            if (isbn) {
+                homeButton.style.display = "flow";
+            } else {
+                homeButton.style.display = "none";
+            }
+        });
+    </script>   
 </body>
 </html>
