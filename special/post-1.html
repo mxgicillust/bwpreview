@@ -1,49 +1,1353 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Test</title>
-    <meta name="description" content="Lightnovel Trial Reading Illustration">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="style.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
-</head>
-
-<body>
-
-    <div id="spaceHolder"></div>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>สาวบางระจัน</title>
+  <link rel="icon" href="https://m1r.ai/veLbb.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>@import url("https://fonts.googleapis.com/css2?family=Reggae+One&display=swap");
+    @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+    @import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+    @import url("https://fonts.googleapis.com/css2?family=Lexend:wght@100;200;300;400;500;600;700;800;900&display=swap");
     
-    <!-- ISBN -->
-    <h1 id="contentTitle"> </h1>
-    <div class="container edge" id="contentContainer" style="display: none;">
-        <div class="row justify-content-center" id="contentHolder">
-            
+    body {
+      background-color: #1c1c1c !important;
+      scroll-behavior: smooth;
+    }
+    
+    .container {
+      margin: 5rem 25rem;
+      padding: 5rem;
+    }
+    
+    .item {
+      background-color: #2c2c2c;
+      color: azure;
+      border-radius: 20px;
+      text-align: center;
+      border-bottom: 7px solid #6d83f2 !important;
+      box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.8);
+      transition: all 0.3s ease-out;
+      transform: translateZ(0);
+      overflow: hidden;
+      height: auto;
+    }
+    
+    .item:hover {
+      transform: translate3d(0px, -0.5rem, 0px);
+      box-shadow: 0 0 1rem rgba(0, 0, 0, 0.8);
+      cursor: pointer;
+    }
+    
+    .item img {
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+      border-radius: 20px 20px 0 0;
+    }
+    
+    .item img:hover {
+      position: relative;
+      transition: all 0.3s ease-out;
+      transform: scale(1.08);
+    }
+    
+    .item p {
+      font-family: "Yu Mincho";
+      font-size: 17px;
+      padding: 20px 15px 0 15px;
+      height: 90px;
+      /* truncate text */
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    
+    .item span {
+      font-size: 0.7rem;
+      font-weight: bold;
+      background-color: #6d83f2;
+      padding: 5px 5px 10px 5px;
+      border-radius: 7px 7px 0 0;
+      border-bottom: none;
+    }
+    
+    @media screen and (min-width: 1551px) and (max-width: 1750px) {
+      .konoDescription {
+        display: -webkit-box;
+        -webkit-line-clamp: 6;
+        -webkit-box-orient: vertical;
+      }
+    }
+    
+    @media screen and (max-width: 1550px) {
+      .section,
+      .konorano {
+        padding-left: 12rem !important;
+        padding-right: 12rem !important;
+      }
+    
+      .konoDescription {
+        font-size: 1rem !important;
+        padding-left: 3rem !important;
+        padding-right: 5rem !important;
+      }
+    
+      .circle_lists {
+        grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)) !important;
+      }
+    
+      .circle_lists .c_list {
+        width: 75% !important;
+      }
+    
+      .circle_lists .c_list .lavel_name {
+        font-size: 0.8rem !important;
+      }
+    }
+    
+    @media screen and (max-width: 1254px) {
+      .konoDescription {
+        display: -webkit-box;
+        -webkit-line-clamp: 5;
+        -webkit-box-orient: vertical;
+      }
+    }
+    
+    /*Ipad ngang(1024 x 768)*/
+    @media screen and (max-width: 1024px) {
+      .item p {
+        font-size: 0.7rem;
+        padding: 0.6rem 0.7rem 0 0.7rem;
+        height: 3.6rem;
+      }
+    
+      .edge {
+        padding-left: 2rem !important;
+        padding-right: 2rem !important;
+      }
+    
+      blockquote {
+        padding: 0 1.4rem;
+      }
+    
+      .section,
+      .konorano {
+        padding-left: 2rem !important;
+        padding-right: 2rem !important;
+      }
+    
+      .konoDescription {
+        font-size: 0.9rem !important;
+        padding-left: 2rem !important;
+        padding-right: 2rem !important;
+      }
+    
+      #searchInput {
+        width: 80% !important;
+      }
+    
+      .sidePanel {
+        display: none !important;
+      }
+    
+      .circle_lists {
+        grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)) !important;
+      }
+    
+      .circle_lists .c_list {
+        width: 75% !important;
+      }
+    
+      .circle_lists .c_list .lavel_name {
+        font-size: 0.8rem !important;
+      }
+    }
+    /*Ipad dọc(768 x 1024)*/
+    @media screen and (max-width: 768px) {
+      .item p {
+        font-size: 0.7rem;
+        padding: 0.6rem 0.7rem 0 0.7rem;
+        height: 3.6rem;
+      }
+    
+      .edge {
+        padding-left: 2rem !important;
+        padding-right: 2rem !important;
+      }
+    
+      blockquote {
+        padding: 0 1.4rem;
+      }
+    
+      blockquote p {
+        font-size: 1.4rem !important;
+      }
+    
+      blockquote cite {
+        font-size: 0.9rem !important;
+      }
+    
+      .section,
+      .konorano {
+        padding-left: 2rem !important;
+        padding-right: 2rem !important;
+      }
+    
+      .konoDescription {
+        font-size: 0.7rem !important;
+        padding-left: 1rem !important;
+        padding-right: 1rem !important;
+        display: -webkit-box;
+        -webkit-line-clamp: 2 !important;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+      }
+    
+      .konoTitle span {
+        font-size: 0.8rem !important;
+      }
+    
+      .titleJP {
+        font-size: 1rem !important;
+      }
+    
+      /* .konoLink {
+        font-size: 0.6rem;
+      } */
+    
+      .circle_lists {
+        grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)) !important;
+      }
+    
+      .circle_lists .c_list {
+        width: 75% !important;
+      }
+    
+      .circle_lists .c_list .lavel_name {
+        font-size: 0.8rem !important;
+      }
+    }
+    /*Tablet nhỏ(480 x 640)*/
+    @media screen and (max-width: 480px) {
+      .item p {
+        font-size: 0.7rem;
+        padding: 0.6rem 0.5rem 0 0.5rem;
+        height: 2.5rem;
+        /* truncate text */
+        display: -webkit-box;
+        -webkit-line-clamp: 2 !important;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+      }
+    
+      .item span {
+        font-size: 0.5rem;
+      }
+    
+      .edge {
+        padding-left: 1rem !important;
+        padding-right: 1rem !important;
+      }
+    
+      blockquote {
+        padding: 0 1.4rem;
+      }
+    
+      blockquote p {
+        font-size: 1.4rem !important;
+      }
+    
+      blockquote cite {
+        font-size: 0.9rem !important;
+      }
+    
+      .section,
+      .konorano {
+        padding-left: 2rem !important;
+        padding-right: 2rem !important;
+      }
+    
+      .konoDescription {
+        font-size: 0.5rem !important;
+        padding-left: 1rem !important;
+        padding-right: 1rem !important;
+        display: -webkit-box;
+        -webkit-line-clamp: 1 !important;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+      }
+    
+      .konoTitle span {
+        font-size: 0.6rem !important;
+      }
+    
+      .konoLink {
+        margin-bottom: 1rem !important;
+      }
+    
+      .titleJP {
+        font-size: 0.7rem !important;
+        margin-bottom: -0.1rem !important;
+      }
+    
+      .circle_lists {
+        grid-template-columns: repeat(auto-fill, minmax(80px, 1fr)) !important;
+      }
+    
+      .circle_lists .c_list {
+        width: 75% !important;
+      }
+    
+      .circle_lists .c_list .lavel_name {
+        font-size: 0.7rem !important;
+      }
+    
+      .head-title h1 {
+        font-size: 1.9rem !important;
+      }
+    
+      .head-title p {
+        font-size: 0.85rem !important;
+      }
+    }
+    /*Iphone(480 x 640)*/
+    @media screen and (max-width: 320px) {
+      .item p {
+        font-size: 0.6rem;
+        padding: 0.6rem 0.5rem 0 0.5rem;
+        height: 2.5rem;
+        /* truncate text */
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+      }
+    
+      .item span {
+        font-size: 0.4rem;
+      }
+    
+      .edge {
+        padding-left: 1rem !important;
+        padding-right: 1rem !important;
+      }
+    
+      blockquote {
+        padding: 0 1.4rem;
+      }
+    
+      blockquote p {
+        font-size: 1.4rem !important;
+      }
+    
+      blockquote cite {
+        font-size: 0.9rem !important;
+      }
+    
+      .section,
+      .konorano {
+        padding-left: 2rem !important;
+        padding-right: 2rem !important;
+      }
+    
+      .konoDescription {
+        font-size: 0.5rem !important;
+        padding-left: 1rem !important;
+        padding-right: 1rem !important;
+        display: -webkit-box;
+        -webkit-line-clamp: 1 !important;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+      }
+    
+      .konoTitle span {
+        font-size: 0.34rem !important;
+      }
+    
+      .konoLink {
+        margin-bottom: 1rem !important;
+      }
+    
+      .titleJP {
+        font-size: 0.4rem !important;
+        margin-bottom: -0.1rem !important;
+      }
+    
+      .circle_lists {
+        grid-template-columns: repeat(auto-fill, minmax(80px, 1fr)) !important;
+      }
+    
+      .circle_lists .c_list {
+        width: 75% !important;
+      }
+    
+      .circle_lists .c_list .lavel_name {
+        font-size: 0.7rem !important;
+      }
+    
+      .head-title h1 {
+        font-size: 1.5rem !important;
+      }
+    
+      .head-title p {
+        font-size: 0.7em !important;
+      }
+    }
+    
+    /*Smart phone nhỏ*/
+    @media screen and (max-width: 240px) {
+      .item p {
+        font-size: 0.6rem;
+        padding: 0.6rem 0.5rem 0 0.5rem;
+        height: 2.5rem;
+        /* truncate text */
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+      }
+    
+      .item span {
+        font-size: 0.4rem;
+      }
+    
+      .edge {
+        padding-left: 1rem !important;
+        padding-right: 1rem !important;
+      }
+    
+      blockquote {
+        padding: 0 1.4rem;
+      }
+    
+      blockquote p {
+        font-size: 1.4rem !important;
+      }
+    
+      blockquote cite {
+        font-size: 0.9rem !important;
+      }
+    
+      .section,
+      .konorano {
+        padding-left: 2rem !important;
+        padding-right: 2rem !important;
+      }
+    
+      .konoDescription {
+        font-size: 0.5rem !important;
+        padding-left: 0rem !important;
+        padding-right: 0rem !important;
+        display: -webkit-box !important;
+        -webkit-line-clamp: 1 !important;
+        -webkit-box-orient: vertical !important;
+        overflow: hidden;
+      }
+    
+      .konoTitle span {
+        font-size: 0.3rem !important;
+      }
+    
+      /* .konoLink {
+        font-size: 0.4rem;
+        padding: 2px 0 !important;
+      } */
+    
+      .titleJP {
+        font-size: 0.4rem !important;
+        margin-bottom: -0.1rem !important;
+      }
+    
+      .circle_lists {
+        grid-template-columns: repeat(auto-fill, minmax(80px, 1fr)) !important;
+      }
+    
+      .circle_lists .c_list {
+        width: 75% !important;
+      }
+    
+      .circle_lists .c_list .lavel_name {
+        font-size: 0.7rem !important;
+      }
+    
+      .head-title h1 {
+        font-size: 1rem !important;
+      }
+    
+      .head-title p {
+        font-size: 0.5em !important;
+      }
+    }
+    
+    @media (min-width: 240px) and (max-width: 991px) {
+      .container,
+      .container-md,
+      .container-sm {
+        max-width: 100% !important;
+      }
+    }
+    
+    .img-holder {
+      overflow: hidden;
+    }
+    
+    .pad {
+      padding-top: 2rem;
+    }
+    
+    /* Start scrollbar-------------------------------------- */
+    ::-webkit-scrollbar {
+      width: 7px;
+    }
+    
+    /* Track */
+    ::-webkit-scrollbar-track {
+      background-color: #2c2c2c;
+      border-radius: 10px;
+    }
+    
+    /* Handle */
+    ::-webkit-scrollbar-thumb {
+      background: antiquewhite;
+      border-radius: 10px;
+    }
+    
+    /* Handle on hover */
+    ::-webkit-scrollbar-thumb:hover {
+      background: #6d83f2;
+    }
+    /* End scrollbar------------------------------------------ */
+    
+    .headimg img {
+      width: 100%;
+      height: auto;
+      position: fixed;
+      z-index: -1;
+    }
+    
+    #bodyContent {
+      background-color: #1c1c1c;
+    }
+    
+    blockquote {
+      text-align: center;
+      color: rgba(250, 200, 130, 0.6);
+      margin-top: 5rem !important;
+      margin-bottom: -5rem !important;
+    }
+    
+    blockquote p {
+      font-family: "Playfair Display", serif;
+      font-size: 2rem;
+    }
+    
+    blockquote p::before {
+      content: open-quote;
+    }
+    
+    blockquote p::after {
+      content: close-quote;
+    }
+    
+    blockquote cite {
+      font-family: "Poppins";
+      font-size: 1.1rem;
+    }
+    
+    /* - Circle Lists
+    ------------------------------------------------------- */
+    .section {
+      padding: 15rem 25rem 5rem 25rem;
+    }
+    
+    .head-title {
+      text-align: center;
+      color: rgba(250, 200, 130, 0.6);
+      width: 80%;
+      margin: 0 auto;
+      padding-bottom: 3rem;
+      /* Fix scroll position when do a pagination */
+      scroll-margin-top: 5rem;
+    }
+    
+    .head-title h1 {
+      font-family: "Lexend", sans-serif;
+      font-size: 3rem;
+      font-weight: 900;
+      border-bottom: 1px solid rgba(250, 200, 130, 0.6);
+      line-height: 0.1em;
+    }
+    
+    .head-title h1 span {
+      background: #1c1c1c;
+      padding: 0 10px;
+    }
+    
+    .head-title p {
+      margin-top: 30px;
+      font-family: "Poppins", sans-serif;
+      font-size: 1.1rem;
+    }
+    
+    li {
+      list-style: none;
+      display: inline;
+      transition: all 0.3s ease-out;
+      transform: translateZ(0);
+      overflow: hidden;
+    }
+    
+    li:hover {
+      transform: translate3d(0px, -0.5rem, 0px);
+    }
+    
+    li:hover div.logo_wrap {
+      animation-name: spin;
+      animation-duration: 4s;
+      animation-iteration-count: infinite;
+      animation-timing-function: linear;
+    }
+    
+    @keyframes spin {
+      from {
+        transform: rotate(0deg);
+      }
+      to {
+        transform: rotate(360deg);
+      }
+    }
+    
+    .circle_lists {
+      padding: 3rem 5.333%;
+      margin-bottom: 8%;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      max-width: 100%;
+      margin: auto;
+      justify-items: center;
+      background-color: #2c2c2c;
+      border-radius: 3rem;
+      box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.8);
+    }
+    
+    @media screen and (min-width: 960px) {
+      .circle_lists {
+        -webkit-box-pack: start;
+        -webkit-justify-content: flex-start;
+        -ms-flex-pack: start;
+        justify-content: flex-start;
+      }
+    }
+    
+    .circle_lists .c_list {
+      width: 80%;
+      text-align: center;
+      margin: 0 2.6% 8%;
+      position: relative;
+    }
+    
+    .circle_lists .c_list a {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      left: 0;
+      top: 0;
+      z-index: 1;
+    }
+    
+    .circle_lists .c_list .logo_wrap {
+      width: 100%;
+      padding-bottom: 100%;
+      position: relative;
+      border-radius: 50%;
+      overflow: hidden;
+      background-color: aliceblue;
+    }
+    
+    .circle_lists .c_list .logo_wrap .lavel_logo {
+      width: 80%;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      -webkit-transform: translate(-50%, -50%);
+      transform: translate(-50%, -50%);
+      -webkit-backface-visibility: hidden;
+      backface-visibility: hidden;
+      display: block;
+    }
+    
+    .circle_lists .c_list .logo_wrap .lavel_logo.lg_1 {
+      /* 富士見ファンタジア文庫 */
+      width: 65%;
+    }
+    
+    .circle_lists .c_list .logo_wrap .lavel_logo.lg_2 {
+      /* 電撃文庫 */
+      width: 55%;
+    }
+    
+    .circle_lists .c_list .logo_wrap .lavel_logo.lg_3 {
+      /* MF文庫J */
+      width: 50%;
+    }
+    
+    .circle_lists .c_list .logo_wrap .lavel_logo.lg_4 {
+      /* ファミ通文庫 */
+      width: 66%;
+    }
+    
+    .circle_lists .c_list .logo_wrap .lavel_logo.lg_5 {
+      /* 角川スニーカー文庫 */
+      width: 42%;
+    }
+    
+    .circle_lists .c_list .logo_wrap .lavel_logo.lg_6 {
+      /* NOVEL 0 */
+      width: 60%;
+    }
+    
+    .circle_lists .c_list .logo_wrap .lavel_logo.lg_7 {
+      /* 講談社ラノベ文庫 */
+      width: 70%;
+    }
+    
+    .circle_lists .c_list .logo_wrap .lavel_logo.lg_9 {
+      /* ガガガ文庫 */
+      width: 75%;
+    }
+    
+    .circle_lists .c_list .logo_wrap .lavel_logo.lg_10 {
+      /* オーバーラップ文庫 */
+      width: 77%;
+    }
+    
+    .circle_lists .c_list .logo_wrap .lavel_logo.lg_11 {
+      /* ＧＡ文庫 */
+      width: 70%;
+    }
+    
+    .circle_lists .c_list .logo_wrap .lavel_logo.lg_14 {
+      /* モンスター文庫 */
+      width: 60%;
+    }
+    
+    .circle_lists .c_list .logo_wrap .lavel_logo.lg_15 {
+      /* ＨＪ文庫 */
+      width: 63%;
+    }
+    
+    .circle_lists .c_list .logo_wrap .lavel_logo.lg_18 {
+      /* ドラゴンノベルス */
+      width: 62%;
+    }
+    
+    .circle_lists .c_list .logo_wrap .lavel_logo.lg_19 {
+      /* カドカワBOOKS */
+      width: 75%;
+    }
+    
+    .circle_lists .c_list .logo_wrap .lavel_logo.lg_20 {
+      /* MFブックス */
+      width: 80%;
+      left: 52%;
+    }
+    
+    .circle_lists .c_list .logo_wrap .lavel_logo.lg_21 {
+      /* 電撃の新文芸 */
+      width: 74%;
+    }
+    
+    .circle_lists .c_list .logo_wrap .lavel_logo.lg_22 {
+      /* KADOKAWAの新文芸 */
+      width: 60%;
+    }
+    
+    .circle_lists .c_list .logo_wrap .lavel_logo.lg_23 {
+      /* ビーズログ文庫 */
+      width: 60%;
+      left: 52%;
+    }
+    
+    .circle_lists .c_list .logo_wrap .lavel_logo.lg_24 {
+      /* ビーズログ文庫アリス */
+      width: 46%;
+    }
+    
+    .circle_lists .c_list .logo_wrap .lavel_logo.lg_25 {
+      /* 角川ビーンズ文庫 */
+      width: 70%;
+    }
+    
+    .circle_lists .c_list .logo_wrap .lavel_logo.lg_26 {
+      /* HJノベルス */
+      width: 65%;
+    }
+    
+    .circle_lists .c_list .logo_wrap .lavel_logo.lg_28 {
+      /* Mノベルス */
+      width: 60%;
+    }
+    
+    .circle_lists .c_list .logo_wrap .lavel_logo.lg_29 {
+      /* Mノベルスf */
+      width: 75%;
+    }
+    
+    .circle_lists .c_list .logo_wrap .lavel_logo.lg_30 {
+      /* Ｋラノベブックス */
+      width: 56%;
+    }
+    
+    .circle_lists .c_list .logo_wrap .lavel_logo.lg_31 {
+      /* Ｋラノベブックスｆ */
+      width: 60%;
+    }
+    
+    .circle_lists .c_list .logo_wrap .lavel_logo.lg_32 {
+      /* オーバーラップノベルス */
+      width: 60%;
+      left: 56%;
+    }
+    
+    .circle_lists .c_list .logo_wrap .lavel_logo.lg_33 {
+      /* オーバーラップノベルスf */
+      width: 60%;
+      left: 54%;
+    }
+    
+    .circle_lists .c_list .logo_wrap .lavel_logo.lg_34 {
+      /* ダッシュエックス文庫 */
+      width: 52%;
+    }
+    
+    .circle_lists .c_list .logo_wrap .lavel_logo.lg_35 {
+      /* TOブックス */
+      width: 80%;
+    }
+    
+    .circle_lists .c_list .logo_wrap .lavel_logo.lg_36 {
+      /* GAノベル */
+      width: 56%;
+    }
+    
+    .circle_lists .c_list .logo_wrap .lavel_logo.lg_37 {
+      /* DREノベルス */
+      width: 56%;
+    }
+    
+    .circle_lists .c_list .logo_wrap .lavel_logo.lg_38 {
+      /* サーガフォレスト */
+      width: 65%;
+      left: 52%;
+    }
+    
+    .circle_lists .c_list .logo_wrap .lavel_logo.lg_16 {
+      /* ブレイブ文庫 */
+      width: 53%;
+      right: 52%;
+    }
+    
+    .circle_lists .c_list .logo_wrap .lavel_logo.lg_39 {
+      /* アース・スターノベル */
+      width: 60%;
+      left: 51%;
+    }
+    
+    .circle_lists .c_list .logo_wrap .lavel_logo.lg_40 {
+      /* アース・スタールナ */
+      width: 60%;
+      left: 53%;
+    }
+    
+    .circle_lists .c_list .lavel_name {
+      font-family: "Yu Mincho";
+      font-size: 10px;
+      font-size: 1rem;
+      line-height: 1.3;
+      font-weight: bold;
+      margin-top: 4%;
+      color: aliceblue;
+    }
+    
+    [class*="lg_"] .lazy {
+      width: 100%;
+      height: auto;
+    }
+    
+    /* Pagination */
+    
+    /*
+    
+    Change padding of parent node if child node is hidden using .hidden class.
+    (In Boostrap 5, we can use 'd-none' instead of these two class.)
+    
+    .hidden {display: none;}
+    .pad:has(div.hidden) {padding: 0;}
+    
+    */
+    
+    .paging {
+      margin-top: -4rem;
+      padding-bottom: 10rem;
+      display: flex;
+      gap: 0.3rem;
+      justify-content: center;
+    }
+    
+    .paging button {
+      border: none;
+      border-radius: 0.4rem;
+      padding: 0.5rem 0.8rem;
+      font-family: "Lexend";
+      font-size: 1rem;
+      background-color: #3f4156;
+      color: rgb(199, 203, 207);
+      box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.8);
+      transition: all 0.3s ease-out;
+      transform: translateZ(0);
+    }
+    
+    .paging button:hover {
+      transform: translate3d(0px, -0.4rem, 0px);
+      box-shadow: 0 0 1rem rgba(0, 0, 0, 0.8);
+    }
+    
+    .paging button.active {
+      background-color: #6d83f2;
+      color: #3f4156;
+    }
+    
+    /* KonoRano------------------------------------------------------------ */
+    .konorano {
+      padding: 10rem 25rem 10rem 25rem;
+    }
+    
+    .konoItem {
+      background-color: #2c2c2c;
+      border-radius: 1rem;
+      overflow: hidden;
+      margin-bottom: 1rem;
+      box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.7);
+    }
+    
+    .konoItem img {
+      padding-left: 0;
+    }
+    
+    .konoTitle {
+      margin-top: 1rem;
+      color: antiquewhite;
+      text-align: center;
+      font-family: "Yu Mincho";
+    }
+    
+    .konoTitle span {
+      font-family: "Poppins";
+    }
+    
+    .titleJP {
+      font-family: "Reggae One";
+      font-size: 1.5rem;
+    }
+    
+    .konoDescription {
+      font-family: "Yu Mincho";
+      font-size: 1.1rem;
+      color: antiquewhite;
+      text-align: left;
+      padding-right: 4rem;
+      padding-left: 4rem;
+      text-align: center;
+      overflow: hidden;
+    }
+    
+    .konoLink {
+      border-radius: 20px;
+      width: 35px;
+      border: 1px solid #f3f6ff;
+      text-align: center;
+      padding: 5px;
+      margin-bottom: 1.5rem;
+      transition: all 0.3s ease-out;
+      &:hover {
+        cursor: pointer;
+        border: 1px solid #6d83f2;
+        background-color: #6d83f2;
+        width: 7rem;
+        border-radius: 0.5rem;
+      }
+    }
+    
+    .konoLink img {
+      width: 11px;
+      height: 11px;
+      margin-bottom: 4px;
+    }
+    
+    #kono20241 img {
+      width: 16px;
+      height: 16px;
+    }
+    
+    .konoContent {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    #kono20241,
+    #kono20242 {
+      display: inline-block;
+    }
+    
+    /* Search Bar------------------------------------------- */
+    .searchContainer {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      font-family: "Lexend";
+      margin-bottom: 2.5rem;
+    }
+    
+    #searchInput {
+      background-image: url("assets/search.png");
+      background-size: 1.2rem;
+      background-position: 13px center;
+      background-repeat: no-repeat;
+      caret-color: aliceblue;
+      font-weight: 300;
+      color: bisque;
+      width: 60%;
+      font-size: 16px;
+      padding: 12px 20px 12px 45px;
+      border: none;
+      background-color: #2c2c2c;
+      border-radius: 15px;
+      box-shadow: 0 0 0.6rem rgba(0, 0, 0, 0.32);
+      &:focus {
+        outline: none;
+      }
+    }
+    
+    #failedInput {
+      color: rgba(250, 200, 130, 0.6);
+      width: 60%;
+      text-align: center;
+      padding: 15rem 0;
+      display: none;
+    }
+    
+    /* Sidepanel------------------------------------------- */
+    .sidePanel {
+      position: fixed;
+      bottom: 1%;
+      left: 0;
+      z-index: 100000;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    
+    .sidePanel img {
+      width: 1.8rem;
+    }
+    
+    .sidePanel .sideImgContainer {
+      background-color: #2c2c2c;
+      width: 3rem;
+      height: 3rem;
+      display: flex;
+      justify-content: right;
+      padding-right: 0.5rem;
+      border-radius: 0 1.3rem 1.3rem 0;
+      box-shadow: 0 0 0.6rem rgba(0, 0, 0, 0.32);
+      transition: all 0.3s ease-out;
+      &:hover {
+        width: 9rem;
+        border-radius: 0 1.4rem 1.4rem 0;
+        align-items: center;
+        gap: 0.5rem;
+        cursor: pointer;
+      }
+      &:hover img {
+        animation-name: spin;
+        animation-duration: 4s;
+        animation-iteration-count: infinite;
+        animation-timing-function: linear;
+      }
+    }
+    
+    .sidePanel .sideImgContainer span {
+      font-family: 'Poppins';
+      color: aliceblue;
+      font-size: 0.9rem;
+      display: none;
+      width: 5.5rem;
+      text-align: center;
+    }
+    
+    .footer {
+      position: center;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      color: white;
+      text-align: center;
+    }
+    
+    .sidePanel .sideImgContainer:hover span {
+      display: block;
+    }</style>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body><a href="https://mxgicillust.github.io/bwpreview/" id="homeButton" style="display: none; text-align: center; margin: 20px auto; display: block;">
+  <button style="background-color: #4CAF50; color: white; padding: 10px 20px; border: none; cursor: pointer;">
+      <i class="fas fa-home"></i> Home
+  </button>
+</a>  
+
+  <h1 id="contentTitle">สาวบางระจัน</h1>
+  <h3>ประสบการณ์รักฉบับวุ่นวายของชายสุดซิงกับหญิงสุดแซ่บ</h3>
+
+  
+  <div class="container edge" id="contentContainer" style="display: block;">
+    <div class="row justify-content-center" id="contentHolder">
+      <style>
+        @import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&display=swap');
+
+html{background-color: antiquewhite;}
+
+body {
+  background-color: rgb(250, 233, 210);
+  margin: 5rem 25rem;
+  padding: 5rem;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  border-radius: 40px;
+  }
+
+h1,h2,h3,h4 {
+  font-family: 'Yu Mincho','Merriweather' !important;
+  font-size: 24px !important;
+  text-align: center;
+  font-weight: bold !important;
+  padding-top: 5rem !important;
+  margin-bottom: -3rem !important;
+  color: white;
+ }
+
+p {
+  font-family: 'Yu Mincho','Merriweather' !important;
+  font-size: 20px;
+  line-height: 40px;
+  margin-bottom: 20px !important;
+}
+
+img:not(.gaiji, .gaiji-line) {
+  width: 100% !important;
+  height: auto !important;
+  border-radius: 30px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 1px 3px, rgba(0, 0, 0, 0.48) 0px 1px 2px;
+  }
+
+svg {
+  border-radius: 30px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 1px 3px, rgba(0, 0, 0, 0.48) 0px 1px 2px;
+  margin-bottom: 2rem !important;
+  }
+
+@media screen and (max-width: 1400px){
+    body {
+      margin: 2rem 15rem;
+    }
+}
+  
+@media screen and (max-width: 1200px){
+    body {
+      margin: 2rem 10rem;
+    }
+}
+
+@media screen and (max-width: 1024px){
+    body {
+      margin: 2rem 0;
+    }
+}
+
+/*Ipad dọc(768 x 1024)*/
+@media screen and (max-width: 768px){
+    body {
+      margin: 2rem 0;
+    }
+  }
+/*Tablet nhỏ(480 x 640)*/
+@media screen and (max-width: 480px){
+    body {
+      margin: 2rem 0;
+    }
+  }
+/*Iphone(480 x 640)*/
+@media screen and (max-width: 320px){
+    body {
+      margin: 2rem 0;
+    }
+  }
+/*Smart phone nhỏ*/
+@media screen and (max-width: 240px){
+    body {
+      margin: 2rem 0;
+    }
+  }
+
+
+/* Scrollbar */
+::-webkit-scrollbar {
+width: 7px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+background-color:aliceblue;
+border-radius: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+background: #2c2c2c;
+border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+background: #6d83f2;
+}
+
+/* Fix issue for chapter images */
+.main1 p:first-child img:not(.fit1) {
+width: auto !important;
+}
+.main1 h1:first-child img:not(.fit1) {
+width: auto !important;
+}
+      </style>
+      <div class="p-toc">
+        <div class="main2">
+          <img class="fit" src="https://pbs.twimg.com/media/GXKi8SBbkAE6GZB?format=jpg&name=medium" alt="" />
+          <p class="calibre6"><br class="main" /></p>
+          <div class="font-1em1">
+            <p class="calibre6">
+              <a href="#vol1">เล่ม 1</a>
+            </p>
+            <p class="calibre6">
+              <a href="#vol2">เล่ม 2</a>
+            </p>
+            <p class="calibre6">
+              <a href="#vol3">เล่ม 3</a>
+            </p>
+            <p class="calibre6">
+              <a href="#vol4">เล่ม 4 (จบ)</a>
+            </p>
+          </div>
         </div>
-    </div>
+      </div>
 
-    <!-- List -->
-    <div class="container edge" id="listContainer">
-        <div class="head-title">
-            <h1><span>Search</span></h1>
+      <div class="p-toc" id="vol1">
+        <div class="main1">
+          <h2>เล่ม 1</h2>
+          <p class="calibre6"><br class="main" /></p>
+          <p class="calibre6"><br class="main" /></p>
+          <p id="calibre_link-15" class="calibre6"><img class="fit" src="https://pub-a7ae6d38878a4a1da8a4750118309216.r2.dev/tsukasa/1/i-001.jpg" alt="" /></p>
+          <p id="calibre_link-15" class="calibre6"><img class="fit" src="https://pub-a7ae6d38878a4a1da8a4750118309216.r2.dev/tsukasa/1/i-002.jpg" alt="" /></p>
+          <p id="calibre_link-15" class="calibre6"><img class="fit" src="https://pub-a7ae6d38878a4a1da8a4750118309216.r2.dev/tsukasa/1/i-003.jpg" alt="" /></p>
+          <p id="calibre_link-15" class="calibre6"><img class="fit" src="https://pub-a7ae6d38878a4a1da8a4750118309216.r2.dev/tsukasa/1/i-004.jpg" alt="" /></p>
+          <p id="calibre_link-15" class="calibre6"><img class="fit" src="https://pub-a7ae6d38878a4a1da8a4750118309216.r2.dev/tsukasa/1/i-005.jpg" alt="" /></p>
+          <p id="calibre_link-15" class="calibre6"><img class="fit" src="https://pub-a7ae6d38878a4a1da8a4750118309216.r2.dev/tsukasa/1/i-006.jpg" alt="" /></p>
+          <p id="calibre_link-15" class="calibre6"><img class="fit" src="https://pub-a7ae6d38878a4a1da8a4750118309216.r2.dev/tsukasa/1/i-007.jpg" alt="" /></p>
+          <p id="calibre_link-15" class="calibre6"><img class="fit" src="https://pub-a7ae6d38878a4a1da8a4750118309216.r2.dev/tsukasa/1/i-008.jpg" alt="" /></p>
+          <p id="calibre_link-15" class="calibre6"><img class="fit" src="https://pub-a7ae6d38878a4a1da8a4750118309216.r2.dev/tsukasa/1/i-009.jpg" alt="" /></p>
+          <p id="calibre_link-15" class="calibre6"><img class="fit" src="https://pub-a7ae6d38878a4a1da8a4750118309216.r2.dev/tsukasa/1/i-010.jpg" alt="" /></p>
+          <p id="calibre_link-15" class="calibre6"><img class="fit" src="https://pub-a7ae6d38878a4a1da8a4750118309216.r2.dev/tsukasa/1/i-011.jpg" alt="" /></p>
+          <p id="calibre_link-15" class="calibre6"><img class="fit" src="https://pub-a7ae6d38878a4a1da8a4750118309216.r2.dev/tsukasa/1/i-012.jpg" alt="" /></p>
+          <p id="calibre_link-15" class="calibre6"><img class="fit" src="https://pub-a7ae6d38878a4a1da8a4750118309216.r2.dev/tsukasa/1/i-013.jpg" alt="" /></p>
+          <p id="calibre_link-15" class="calibre6"><img class="fit" src="https://pub-a7ae6d38878a4a1da8a4750118309216.r2.dev/tsukasa/1/i-014.jpg" alt="" /></p>
         </div>
+      </div>
 
-        <div class="searchContainer">
-            <input type="text" id="searchInput" onkeyup="searchFunction()">
-            <span id="failedInput">Not Exists</span>
+      <div class="p-toc" id="vol2">
+        <div class="main1">
+          <h2>เล่ม 2</h2>
+          <p class="calibre6"><br class="main" /></p>
+          <p class="calibre6"><br class="main" /></p>
+          <!-- <p id="calibre_link-15" class="calibre6"><img class="fit" src="https://pub-a7ae6d38878a4a1da8a4750118309216.r2.dev/tsukasa/2/i-001.jpg" alt="" /></p>
+          <p id="calibre_link-15" class="calibre6"><img class="fit" src="https://pub-a7ae6d38878a4a1da8a4750118309216.r2.dev/tsukasa/2/i-002.jpg" alt="" /></p>
+          <p id="calibre_link-15" class="calibre6"><img class="fit" src="https://pub-a7ae6d38878a4a1da8a4750118309216.r2.dev/tsukasa/2/i-003.jpg" alt="" /></p>
+          <p id="calibre_link-15" class="calibre6"><img class="fit" src="https://pub-a7ae6d38878a4a1da8a4750118309216.r2.dev/tsukasa/2/i-004.jpg" alt="" /></p>
+          <p id="calibre_link-15" class="calibre6"><img class="fit" src="https://pub-a7ae6d38878a4a1da8a4750118309216.r2.dev/tsukasa/2/i-005.jpg" alt="" /></p>
+          <p id="calibre_link-15" class="calibre6"><img class="fit" src="https://pub-a7ae6d38878a4a1da8a4750118309216.r2.dev/tsukasa/2/i-006.jpg" alt="" /></p>
+          <p id="calibre_link-15" class="calibre6"><img class="fit" src="https://pub-a7ae6d38878a4a1da8a4750118309216.r2.dev/tsukasa/2/i-007.jpg" alt="" /></p>
+          <p id="calibre_link-15" class="calibre6"><img class="fit" src="https://pub-a7ae6d38878a4a1da8a4750118309216.r2.dev/tsukasa/2/i-008.jpg" alt="" /></p>
+          <p id="calibre_link-15" class="calibre6"><img class="fit" src="https://pub-a7ae6d38878a4a1da8a4750118309216.r2.dev/tsukasa/2/i-009.jpg" alt="" /></p>
+          <p id="calibre_link-15" class="calibre6"><img class="fit" src="https://pub-a7ae6d38878a4a1da8a4750118309216.r2.dev/tsukasa/2/i-010.jpg" alt="" /></p>
+          <p id="calibre_link-15" class="calibre6"><img class="fit" src="https://pub-a7ae6d38878a4a1da8a4750118309216.r2.dev/tsukasa/2/i-011.jpg" alt="" /></p>
+          <p id="calibre_link-15" class="calibre6"><img class="fit" src="https://pub-a7ae6d38878a4a1da8a4750118309216.r2.dev/tsukasa/2/i-012.jpg" alt="" /></p>
+          <p id="calibre_link-15" class="calibre6"><img class="fit" src="https://pub-a7ae6d38878a4a1da8a4750118309216.r2.dev/tsukasa/2/i-013.jpg" alt="" /></p>
+          <p id="calibre_link-15" class="calibre6"><img class="fit" src="https://pub-a7ae6d38878a4a1da8a4750118309216.r2.dev/tsukasa/2/i-014.jpg" alt="" /></p> -->
         </div>
+      </div>
 
-        <div class="row justify-content-center" id="rowHolder">
-               
+      <div class="p-toc" id="vol3">
+        <div class="main1">
+          <h2>เล่ม 3</h2>
+          <p class="calibre6"><br class="main" /></p>
+          <p class="calibre6"><br class="main" /></p>
+          <p id="calibre_link-15" class="calibre6"><img class="fit" src="https://pub-a7ae6d38878a4a1da8a4750118309216.r2.dev/tsukasa/3/i-001.jpg" alt="" /></p>
+          <p id="calibre_link-15" class="calibre6"><img class="fit" src="https://pub-a7ae6d38878a4a1da8a4750118309216.r2.dev/tsukasa/3/i-002.jpg" alt="" /></p>
+          <p id="calibre_link-15" class="calibre6"><img class="fit" src="https://pub-a7ae6d38878a4a1da8a4750118309216.r2.dev/tsukasa/3/i-003.jpg" alt="" /></p>
+          <p id="calibre_link-15" class="calibre6"><img class="fit" src="https://pub-a7ae6d38878a4a1da8a4750118309216.r2.dev/tsukasa/3/i-004.jpg" alt="" /></p>
+          <p id="calibre_link-15" class="calibre6"><img class="fit" src="https://pub-a7ae6d38878a4a1da8a4750118309216.r2.dev/tsukasa/3/i-005.jpg" alt="" /></p>
+          <p id="calibre_link-15" class="calibre6"><img class="fit" src="https://pub-a7ae6d38878a4a1da8a4750118309216.r2.dev/tsukasa/3/i-006.jpg" alt="" /></p>
+          <p id="calibre_link-15" class="calibre6"><img class="fit" src="https://pub-a7ae6d38878a4a1da8a4750118309216.r2.dev/tsukasa/3/i-007.jpg" alt="" /></p>
+          <p id="calibre_link-15" class="calibre6"><img class="fit" src="https://pub-a7ae6d38878a4a1da8a4750118309216.r2.dev/tsukasa/3/i-008.jpg" alt="" /></p>
+          <p id="calibre_link-15" class="calibre6"><img class="fit" src="https://pub-a7ae6d38878a4a1da8a4750118309216.r2.dev/tsukasa/3/i-009.jpg" alt="" /></p>
+          <p id="calibre_link-15" class="calibre6"><img class="fit" src="https://pub-a7ae6d38878a4a1da8a4750118309216.r2.dev/tsukasa/3/i-010.jpg" alt="" /></p>
+          <p id="calibre_link-15" class="calibre6"><img class="fit" src="https://pub-a7ae6d38878a4a1da8a4750118309216.r2.dev/tsukasa/3/i-011.jpg" alt="" /></p>
+          <p id="calibre_link-15" class="calibre6"><img class="fit" src="https://pub-a7ae6d38878a4a1da8a4750118309216.r2.dev/tsukasa/3/i-012.jpg" alt="" /></p>
+          <p id="calibre_link-15" class="calibre6"><img class="fit" src="https://pub-a7ae6d38878a4a1da8a4750118309216.r2.dev/tsukasa/3/i-013.jpg" alt="" /></p>
+          <p id="calibre_link-15" class="calibre6"><img class="fit" src="https://pub-a7ae6d38878a4a1da8a4750118309216.r2.dev/tsukasa/3/i-014.jpg" alt="" /></p>
         </div>
-    </div>
+      </div>
 
-    <div class="footer" id="mainFooter">
-        <p>All Code are Courtesy of Meoki and Reedited</p>
-    </div>
+      <div class="p-toc" id="vol4">
+        <div class="main1">
+          <h2>เล่ม 4 (จบ)</h2>
+          <p class="calibre6"><br class="main" /></p>
+          <p class="calibre6"><br class="main" /></p>
+          <p id="calibre_link-15" class="calibre6"><img class="fit" src="https://pub-a7ae6d38878a4a1da8a4750118309216.r2.dev/tsukasa/4/i-001.jpg" alt="" /></p>
+          <p id="calibre_link-15" class="calibre6"><img class="fit" src="https://pub-a7ae6d38878a4a1da8a4750118309216.r2.dev/tsukasa/4/i-002.jpg" alt="" /></p>
+          <p id="calibre_link-15" class="calibre6"><img class="fit" src="https://pub-a7ae6d38878a4a1da8a4750118309216.r2.dev/tsukasa/4/i-003.jpg" alt="" /></p>
+          <p id="calibre_link-15" class="calibre6"><img class="fit" src="https://pub-a7ae6d38878a4a1da8a4750118309216.r2.dev/tsukasa/4/i-004.jpg" alt="" /></p>
+          <p id="calibre_link-15" class="calibre6"><img class="fit" src="https://pub-a7ae6d38878a4a1da8a4750118309216.r2.dev/tsukasa/4/i-005.jpg" alt="" /></p>
+          <p id="calibre_link-15" class="calibre6"><img class="fit" src="https://pub-a7ae6d38878a4a1da8a4750118309216.r2.dev/tsukasa/4/i-006.jpg" alt="" /></p>
+          <p id="calibre_link-15" class="calibre6"><img class="fit" src="https://pub-a7ae6d38878a4a1da8a4750118309216.r2.dev/tsukasa/4/i-007.jpg" alt="" /></p>
+          <p id="calibre_link-15" class="calibre6"><img class="fit" src="https://pub-a7ae6d38878a4a1da8a4750118309216.r2.dev/tsukasa/4/i-008.jpg" alt="" /></p>
+          <p id="calibre_link-15" class="calibre6"><img class="fit" src="https://pub-a7ae6d38878a4a1da8a4750118309216.r2.dev/tsukasa/4/i-009.jpg" alt="" /></p>
+          <p id="calibre_link-15" class="calibre6"><img class="fit" src="https://pub-a7ae6d38878a4a1da8a4750118309216.r2.dev/tsukasa/4/i-010.jpg" alt="" /></p>
+          <p id="calibre_link-15" class="calibre6"><img class="fit" src="https://pub-a7ae6d38878a4a1da8a4750118309216.r2.dev/tsukasa/4/i-011.jpg" alt="" /></p>
+          <p id="calibre_link-15" class="calibre6"><img class="fit" src="https://pub-a7ae6d38878a4a1da8a4750118309216.r2.dev/tsukasa/4/i-012.jpg" alt="" /></p>
+          <p id="calibre_link-15" class="calibre6"><img class="fit" src="https://pub-a7ae6d38878a4a1da8a4750118309216.r2.dev/tsukasa/4/i-013.jpg" alt="" /></p>
+          <p id="calibre_link-15" class="calibre6"><img class="fit" src="https://pub-a7ae6d38878a4a1da8a4750118309216.r2.dev/tsukasa/4/i-014.jpg" alt="" /></p>
+          <p id="calibre_link-15" class="calibre6"><img class="fit" src="https://pub-a7ae6d38878a4a1da8a4750118309216.r2.dev/tsukasa/4/i-015.jpg" alt="" /></p>
+        </div>
+      </div>
+  
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+  <!-- Cloudflare Web Analytics -->
+  <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "8397abfad63745a59500d49fc415d67e"}'></script>
+  <!-- End Cloudflare Web Analytics -->
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-    <script src="test.js"></script>
-</body>
-</html>
+</div></body></html>
