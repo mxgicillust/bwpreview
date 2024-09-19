@@ -36,7 +36,7 @@ document.addEventListener("DOMContentLoaded", () => {
         'ダッシュエックス文庫DIGITAL': 'ダッシュエックス文庫'
     };
 
-    fetch("https://raw.githubusercontent.com/mxgicillust/bwjson/main/isbn.json")
+    fetch(`https://raw.githubusercontent.com/mxgicillust/bwjson/main/isbn.json?t=${Date.now()}`)
     //fetch("isbn.json")
         .then(response => response.json())
         .then(isbnList => {
