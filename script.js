@@ -139,7 +139,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         <img id="coverHeight" src="https://www.books.or.jp/img/books_icon/${isbn}.jpg?${cldate}" alt="${title}" loading="lazy" onerror="this.onerror=null; this.src='${imageUrl}'; this.onerror=function() {this.src='${placeholder}';};">
                     </div>
                     <p>${title}</p>
-                    <span>${logo} ${re_publisher || undefined }</span>
+                    <span>${logo} ${re_publisher || ' ' }</span>
                 </div>
             `;
             containerHolder.appendChild(newItem);
@@ -174,10 +174,10 @@ document.addEventListener("DOMContentLoaded", () => {
             newItem.innerHTML = `
                 <div class="item" id="${isbn}">
                     <div class="img-holder">
-                        <img src="https://www.books.or.jp/img/books_icon/${isbn}.jpg?${cldate}" alt="${title}" loading="lazy" onerror="this.onerror=null; this.src='${imageUrl}'; this.onerror=function() {this.src='${placeholder}';};">
+                        <img id="coverHeight" src="https://www.books.or.jp/img/books_icon/${isbn}.jpg?${cldate}" alt="${title}" loading="lazy" onerror="this.onerror=null; this.src='${imageUrl}'; this.onerror=function() {this.src='${placeholder}';};">
                     </div>
                     <p>${title}</p>
-                    <span>${logo} ${re_publisher || undefined }</span>
+                    <span>${logo} ${re_publisher || ' ' }</span>
                 </div>
             `;
             containerHolderTBD.appendChild(newItem);
@@ -210,7 +210,7 @@ document.addEventListener("DOMContentLoaded", () => {
         newItem.innerHTML = `
             <div class="item" id="${isbn}">
                 <div class="img-holder">
-                <img src="${placeholder}" alt="${title}" loading="lazy">
+                <img id="coverHeight" src="${placeholder}" alt="${title}" loading="lazy">
                 </div>
                 <p>${title}</p>
             </div>
