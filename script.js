@@ -1,3 +1,12 @@
+window.onload = function () {
+    var allLinks = document.querySelectorAll("li.c_list a");
+    for (var i = 0; i < allLinks.length; i++) {
+        var currentLink = allLinks[i];
+        currentLink.setAttribute("target", "_blank");
+    }
+    coverResize();
+}
+    
 document.addEventListener("DOMContentLoaded", () => {
     const containerHolder = document.getElementById("rowHolder");
     const containerHolderTBD = document.getElementById("rowHolder_tbd");
@@ -127,7 +136,7 @@ document.addEventListener("DOMContentLoaded", () => {
             newItem.innerHTML = `
                 <div class="item" id="${isbn}">
                     <div class="img-holder">
-                        <img src="https://www.books.or.jp/img/books_icon/${isbn}.jpg?${cldate}" alt="${title}" loading="lazy" onerror="this.onerror=null; this.src='${imageUrl}'; this.onerror=function() {this.src='${placeholder}';};">
+                        <img id="coverHeight" src="https://www.books.or.jp/img/books_icon/${isbn}.jpg?${cldate}" alt="${title}" loading="lazy" onerror="this.onerror=null; this.src='${imageUrl}'; this.onerror=function() {this.src='${placeholder}';};">
                     </div>
                     <p>${title}</p>
                     <span>${logo} ${re_publisher || undefined }</span>
@@ -238,6 +247,20 @@ document.addEventListener("DOMContentLoaded", () => {
         return imagesHtml;
     }
 });
+
+document.getElementById('spaceHolder').style.height = document.querySelector('.headimg img').offsetHeight + 'px';
+window.addEventListener('resize', () => {
+    document.getElementById('spaceHolder').style.height = document.querySelector('.headimg img').offsetHeight + 'px';
+    coverResize();
+});
+
+var coverResize = () => {
+    var coverHeight = document.getElementById('coverHeight').offsetHeight;
+    var coversList = document.querySelectorAll('.img-holder img:not(#coverHeight)');
+    for (let i = 0; i < coversList.length; i++) {
+        coversList[i].style.height = coverHeight + 'px';
+    }
+}
 
 // Search
 
