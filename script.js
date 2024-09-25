@@ -210,7 +210,7 @@ document.addEventListener("DOMContentLoaded", () => {
         newItem.innerHTML = `
             <div class="item" id="${isbn}">
                 <div class="img-holder">
-                <img id="coverHeight" src="${placeholder}" alt="${title}" loading="lazy">
+                <img id="coverHeight" src="${placeholder}" alt="${title}" loading="lazy" isbn="${isbn}">
                 </div>
                 <p>${title}</p>
             </div>
