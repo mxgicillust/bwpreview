@@ -136,7 +136,7 @@ document.addEventListener("DOMContentLoaded", () => {
             newItem.innerHTML = `
                 <div class="item" id="${isbn}">
                     <div class="img-holder">
-                        <img id="coverHeight" src="https://www.books.or.jp/img/books_icon/${isbn}.jpg?${cldate}" alt="${title}" loading="lazy" onerror="this.onerror=null; this.src='${imageUrl}'; this.onerror=function() {this.src='${placeholder}';};">
+                        <img id="coverHeight" src="https://www.books.or.jp/img/books_icon/${isbn}.jpg?${cldate}" alt="${title}" isbn="${isbn}" loading="lazy" onerror="this.onerror=null; this.src='${imageUrl}'; this.onerror=function() {this.src='${placeholder}';};">
                     </div>
                     <p>${title}</p>
                     <span>${logo} ${re_publisher || ' ' }</span>
@@ -174,7 +174,7 @@ document.addEventListener("DOMContentLoaded", () => {
             newItem.innerHTML = `
                 <div class="item" id="${isbn}">
                     <div class="img-holder">
-                        <img id="coverHeight" src="https://www.books.or.jp/img/books_icon/${isbn}.jpg?${cldate}" alt="${title}" loading="lazy" onerror="this.onerror=null; this.src='${imageUrl}'; this.onerror=function() {this.src='${placeholder}';};">
+                        <img id="coverHeight" src="https://www.books.or.jp/img/books_icon/${isbn}.jpg?${cldate}" alt="${title}" loading="lazy" isbn="${isbn}" onerror="this.onerror=null; this.src='${imageUrl}'; this.onerror=function() {this.src='${placeholder}';};">
                     </div>
                     <p>${title}</p>
                     <span>${logo} ${re_publisher || ' ' }</span>
