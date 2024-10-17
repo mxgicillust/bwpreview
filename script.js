@@ -72,17 +72,19 @@ document.addEventListener("DOMContentLoaded", () => {
             if (data[0] && data[0].summary) {
                 const title = data[0].summary.title;
                 const publisher = data[0].summary.series;
+                const maxPage = getMaxPageFromJson(isbnList, isbn) || 10; 
+                
                 if (isSingle) {
-                    displayContent(isbn, title, placeholder);
+                    displayContent(isbn, title, placeholder, maxPage);
                 } else {
                     createItem(isbn, title, placeholder, publisher);
                 }
             } else {
-                console.error('Title not found in OpenBD data', isbn);
+                console.error('Title not found', isbn);
                 fetchJSON(isbn, isSingle, isbnList, placeholder);
             }
         } catch (error) {
-            console.error('Error fetching OpenBD data:', error);
+            console.error('Error fetching Api Data:', error);
             fetchJSON(isbn, isSingle, isbnList, placeholder);
         }
     }
@@ -94,10 +96,12 @@ document.addEventListener("DOMContentLoaded", () => {
             const jsonData = await response.json();
 
             const bookData = jsonData.find(item => item.isbn === isbn);
+            const maxPage = getMaxPageFromJson(jsonData, isbn) || 10;
+
             if (bookData && bookData.title) {
                 const title = bookData.title;
                 if (isSingle) {
-                    displayContent(isbn, title, placeholder);
+                    displayContent(isbn, title, placeholder, maxPage);
                 } else {
                     createItem(isbn, title, placeholder);
                 }
@@ -109,6 +113,11 @@ document.addEventListener("DOMContentLoaded", () => {
             console.error('Error fetching local JSON data:', error);
             ISBNHandler(isSingle, isbnList, placeholder);
         }
+    }
+
+    function getMaxPageFromJson(isbnList, isbn) {
+        const book = isbnList.find(item => item.isbn === isbn);
+        return book ? book.maxPage : null; 
     }
 
     function ISBNHandler(isSingle, isbnList, placeholder) {
@@ -218,7 +227,7 @@ document.addEventListener("DOMContentLoaded", () => {
         containerHolder.appendChild(newItem);
     }
 
-    function displayContent(isbn, title, placeholder) {
+    function displayContent(isbn, title, placeholder, maxPage) {
         listContainer.style.display = 'none';
         contentContainer.style.display = 'block';
         contentTitle.textContent = title || 'Loading...';
@@ -226,7 +235,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const imageUrl = `https://pub-e28bf2d5c16b4edb835dd176df0418ef.r2.dev/${isbn}/i-001.jpg`;
         const fallbackImageUrl = placeholder;
     
-        const imagesHtml = generateImagesHtml(isbn);
+        const imagesHtml = generateImagesHtml(isbn, maxPage);
         contentHolder.innerHTML = `
             <link rel="stylesheet" href="content/custom.css"> 
             <img src="${imageUrl}" alt="${title}" style="max-width: 100%; height: auto;" onerror="this.onerror=null; this.src='${fallbackImageUrl}';">
@@ -238,12 +247,13 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
 
-    function generateImagesHtml(isbn) {
+    function generateImagesHtml(isbn, maxPage = 10) {
         let imagesHtml = '';
-        for (let i = 2; i <= 10; i++) {
+        for (let i = 2; i <= maxPage; i++) {
             const imageNumber = String(i).padStart(3, '0');
             imagesHtml += `<img src="https://pub-e28bf2d5c16b4edb835dd176df0418ef.r2.dev/${isbn}/i-${imageNumber}.jpg" style="max-width: 100%; height: auto; margin-bottom: 10px;" onerror='this.style.display = "none"'>`;
         }
+        console.log(maxPage)
         return imagesHtml;
     }
 });
