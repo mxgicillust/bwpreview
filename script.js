@@ -174,43 +174,43 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         };
     
-        img.onerror = function() {
-            const newItem = document.createElement("div");
-            const re_publisher = pubMap[publisher] || publisher;
-            const logo = publisherLogos[re_publisher] ? `<img src="${publisherLogos[re_publisher]}" alt="${re_publisher} logo" class="publisher-logo">` : '';    
-            const cldate = new Date().getTime() 
-            newItem.className = "col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-6 col-6 pad";
-            newItem.innerHTML = `
-                <div class="item" id="${isbn}">
-                    <div class="img-holder">
-                        <img id="coverHeight" src="https://www.books.or.jp/img/books_icon/${isbn}.jpg?${cldate}" alt="${title}" loading="lazy" isbn="${isbn}" onerror="this.onerror=null; this.src='${imageUrl}'; this.onerror=function() {this.src='${placeholder}';};">
-                    </div>
-                    <p>${title}</p>
-                    <span>${logo} ${re_publisher || ' ' }</span>
-                </div>
-            `;
-            containerHolderTBD.appendChild(newItem);
+        // img.onerror = function() {
+        //     const newItem = document.createElement("div");
+        //     const re_publisher = pubMap[publisher] || publisher;
+        //     const logo = publisherLogos[re_publisher] ? `<img src="${publisherLogos[re_publisher]}" alt="${re_publisher} logo" class="publisher-logo">` : '';    
+        //     const cldate = new Date().getTime() 
+        //     newItem.className = "col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-6 col-6 pad";
+        //     newItem.innerHTML = `
+        //         <div class="item" id="${isbn}">
+        //             <div class="img-holder">
+        //                 <img id="coverHeight" src="https://www.books.or.jp/img/books_icon/${isbn}.jpg?${cldate}" alt="${title}" loading="lazy" isbn="${isbn}" onerror="this.onerror=null; this.src='${imageUrl}'; this.onerror=function() {this.src='${placeholder}';};">
+        //             </div>
+        //             <p>${title}</p>
+        //             <span>${logo} ${re_publisher || ' ' }</span>
+        //         </div>
+        //     `;
+        //     containerHolderTBD.appendChild(newItem);
     
-            const item = newItem.querySelector('.item');
-            item.addEventListener("click", function () {
-                const img = this.querySelector('img');
-                if (img.src.includes(placeholder)) {
-                    return;
-                }
+        //     const item = newItem.querySelector('.item');
+        //     item.addEventListener("click", function () {
+        //         const img = this.querySelector('img');
+        //         if (img.src.includes(placeholder)) {
+        //             return;
+        //         }
     
-                const altimg = new Image();
-                altimg.src = imageUrl;
+        //         const altimg = new Image();
+        //         altimg.src = imageUrl;
     
-                altimg.onload = function() {
-                    return;
-                }
+        //         altimg.onload = function() {
+        //             return;
+        //         }
                 
-                altimg.onerror = function() {
-                    alert("Error: Sub Illustration hasn't been uploaded\n口絵はまだアップロードされておりません");
-                    console.warn("Sub Illustration hasn't been uploaded", isbn);
-                };
-            });;
-        };
+        //         altimg.onerror = function() {
+        //             alert("Error: Sub Illustration hasn't been uploaded\n口絵はまだアップロードされておりません");
+        //             console.warn("Sub Illustration hasn't been uploaded", isbn);
+        //         };
+        //     });;
+        // };
     }
 
     function CreatePlaceholder(isbn, title, placeholder) {
