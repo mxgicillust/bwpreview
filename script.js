@@ -56,8 +56,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const fetchISBNList = async () => {
         try {
-            // const response = await fetch(`https://raw.githubusercontent.com/mxgicillust/bwjson/main/isbn.json?t=${Date.now()}`);
-            const response = await fetch(`https://raw.githubusercontent.com/mxgicillust/bwjson/main/test.json?t=${Date.now()}`);
+            const response = await fetch(`https://raw.githubusercontent.com/mxgicillust/bwjson/main/isbn.json?t=${Date.now()}`);
+            //const response = await fetch(`https://raw.githubusercontent.com/mxgicillust/bwjson/main/test.json?t=${Date.now()}`);
             return await response.json();
         } catch (error) {
             console.error('Error loading ISBN list:', error);
