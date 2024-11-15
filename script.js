@@ -41,11 +41,19 @@ document.addEventListener("DOMContentLoaded", () => {
         'ダッシュエックス文庫DIGITAL': 'ダッシュエックス文庫'
     };
 
+    function japanTime(date = new Date()) {
+        const utc = date.getTime() + date.getTimezoneOffset() * 60000; 
+        const japanTime = new Date(utc + 9 * 3600000); 
+        //console.log(`current japan time: ${japanTime}`)
+        return japanTime;
+    }
+
     const GoogleAPI = async (isbn) => {
         try {
             const response = await fetch(`https://www.googleapis.com/books/v1/volumes?q=isbn:${isbn}`);
             const data = await response.json();
             const publishedDate = data.items?.[0]?.volumeInfo?.publishedDate;
+            
             return publishedDate ? new Date(publishedDate) : null;
         } catch (error) {
             console.error('Google Books API Error:', error);
@@ -118,7 +126,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
         img.onload　= async function() {
             const releaseDate = await GoogleAPI(isbn);
-            const targetContainer = releaseDate && new Date() >= releaseDate ? HolderHatsubai : containerHolder;
+            const localjptime = japanTime()
+            const targetContainer = releaseDate && localjptime >= japanTime(releaseDate) ? HolderHatsubai : containerHolder;
     
             const newItem = document.createElement("div");
             newItem.className = "col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-sm-6 col-6 pad";
